@@ -1,0 +1,136 @@
+/* General Styles */
+
+/* Main container for the About page content */
+.about-container {
+  padding: 30px; /* Adds space inside the container */
+  max-width: 900px; /* Limits the maximum width for better readability */
+  margin: auto; /* Centers the container horizontally */
+  background-color: #f9f9f9; /* Light background color for a clean look */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  text-align: center; /* Centers all text inside */
+  font-family: "Arial", sans-serif; /* Sets the font style */
+}
+
+/* Headings */
+
+/* Main heading style (h1) */
+.about-container h1 {
+  font-size: 28px; /* Large font size for main heading */
+  color: #2c3e50; /* Dark blue text color */
+  margin-bottom: 10px; /* Space below the heading */
+}
+
+/* Subheading style (h2) */
+.about-container h2 {
+  font-size: 24px; /* Slightly smaller than h1 */
+  color: #34495e; /* Slightly lighter dark blue */
+  margin-top: 20px; /* Space above subheadings */
+  border-bottom: 3px solid #2980b9; /* Blue underline below h2 */
+  display: inline-block; /* Shrinks underline to text width */
+  padding-bottom: 5px; /* Space between text and underline */
+}
+
+/* Paragraphs */
+
+/* General paragraph text styling */
+.about-container p {
+  font-size: 16px; /* Standard readable size */
+  color: #555; /* Soft dark gray text */
+  line-height: 1.8; /* Line spacing for easier reading */
+  text-align: justify; /* Align text evenly left and right */
+  margin-bottom: 15px; /* Space below each paragraph */
+}
+
+/* Feature List */
+
+/* Unordered list styling */
+.about-list {
+  list-style: none; /* Removes default bullet points */
+  padding: 0; /* Removes default left padding */
+  margin: 20px 0; /* Adds top and bottom margins */
+}
+
+/* Each list item inside the feature list */
+.about-list li {
+  font-size: 16px; /* Standard size for list items */
+  color: #2c3e50; /* Dark blue color for text */
+  background: #ecf0f1; /* Light gray background */
+  padding: 10px; /* Inner spacing inside each item */
+  border-radius: 8px; /* Rounded corners */
+  margin-bottom: 8px; /* Space between list items */
+  display: flex; /* Aligns icon and text horizontally */
+  align-items: center; /* Vertically centers the icon and text */
+  gap: 10px; /* Space between icon and text */
+}
+
+/* Team Section */
+
+/* Container for team member cards */
+.team-section {
+  display: flex; /* Horizontal layout */
+  justify-content: center; /* Center-aligns items */
+  flex-wrap: wrap; /* Wraps to next line on smaller screens */
+  margin-top: 20px; /* Space above the team section */
+  gap: 20px; /* Space between team members */
+}
+
+/* Team Members */
+
+/* Individual team member card */
+.team-member {
+  background: white; /* White background */
+  padding: 15px; /* Inner spacing */
+  border-radius: 10px; /* Rounded corners */
+  text-align: center; /* Center-align text and image */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  max-width: 200px; /* Limits card width */
+}
+
+/* Hover effect for team member card */
+.team-member:hover {
+  transform: translateY(-8px); /* Lifts card upward */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow when hovering */
+}
+
+/* Team member profile image */
+.team-member img {
+  border-radius: 50%; /* Makes the image circular */
+  width: 120px; /* Fixed width */
+  height: 120px; /* Fixed height */
+  object-fit: cover; /* Ensures image fills the circle neatly */
+  margin-bottom: 10px; /* Space below image */
+}
+
+/* Team member name */
+.team-member h3 {
+  font-size: 18px; /* Medium-sized name text */
+  color: #2980b9; /* Blue text color */
+  margin-bottom: 5px; /* Space below the name */
+}
+
+/* Team member description */
+.team-member p {
+  font-size: 14px; /* Smaller font for the description */
+  color: #7f8c8d; /* Light grayish text */
+  font-style: italic; /* Italicized text style */
+}
+
+/* Responsive Design */
+
+/* Styles applied for screen sizes smaller than 768px (tablets/mobiles) */
+@media (max-width: 768px) {
+  
+  /* Stack team members vertically instead of side-by-side */
+  .team-section {
+    flex-direction: column;
+    align-items: center; /* Center-align cards vertically */
+  }
+
+  /* Make list items slightly smaller on mobile for better fit */
+  .about-list li {
+    font-size: 14px;
+    padding: 8px; /* Slightly reduce padding */
+  }
+}

@@ -1,0 +1,1105 @@
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  background-color: var(--color-dark-base, #0a101f);
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-dark-base, #0a101f);
+}
+
+/* HomeComponent.css */
+
+/* --- Define Enhanced Color Palette & Variables --- */
+:root {
+  /* Colors */
+  --color-dark-base: #0a101f;
+  --color-dark-secondary: #1c2a41;
+  --color-light-text: #e6f1ff;
+  --color-muted-text: #a0aec0;
+  --color-accent: #ffd700;
+  --color-accent-hover: #e6c300;
+  --color-accent-rgb: 255, 215, 0; /* NEW: RGB for shadows/glows */
+  --color-primary-action: #3498db;
+  --color-primary-action-hover: #2980b9;
+  --color-border-subtle: rgba(230, 241, 255, 0.1);
+  --color-border-medium: rgba(230, 241, 255, 0.2);
+  --color-dark-shadow-soft: rgba(0, 0, 0, 0.2);
+  --color-dark-shadow-medium: rgba(0, 0, 0, 0.35);
+  --color-dark-overlay: rgba(10, 16, 31, 0.8);
+  --color-star-inactive: #5a6f8a;
+  --color-success-bg: rgba(46, 204, 113, 0.1);
+  --color-success-text: #2ecc71;
+  --color-success-border: rgba(46, 204, 113, 0.3);
+  --color-error-bg: rgba(231, 76, 60, 0.1);
+  --color-error-text: #e74c3c;
+  --color-error-border: rgba(231, 76, 60, 0.3);
+
+  /* UI Elements */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px; /* Default for non-pill buttons */
+  --border-radius-lg: 12px; /* Softer option for cards etc */
+  --border-radius-pill: 50px; /* --- UPDATED: For rounded buttons --- */
+  --transition-speed: 0.3s;
+  --transition-timing: ease-in-out;
+
+  /* Typography */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Spacing */
+  --space-section-vertical: 110px;
+  --space-section-padding-vertical: 70px;
+  --space-section-padding-horizontal: 5%;
+  --space-title-margin-bottom: 60px;
+  --space-grid-gap: 35px;
+  --space-button-gap: 20px; /* Slightly increased gap between buttons */
+}
+
+/* Global Styles / Home Page Container */
+.home-container {
+  background-color: var(--color-dark-base);
+  color: var(--color-light-text);
+  padding: 0 30px 50px 30px;
+  width: 100%;
+  flex-grow: 1;
+  max-width: 1600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Shared Section Styles --- */
+.section-padding {
+  padding-top: var(--space-section-padding-vertical);
+  padding-bottom: var(--space-section-padding-vertical);
+  padding-left: var(--space-section-padding-horizontal);
+  padding-right: var(--space-section-padding-horizontal);
+  margin-bottom: var(--space-section-vertical);
+}
+.reviews-form-contact-section { /* If this class is still used */
+   margin-bottom: 0;
+}
+
+/* Default style for main titles within sections */
+.section-title {
+  font-size: clamp(2rem, 4.5vw, 2.6rem);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--space-title-margin-bottom);
+  color: var(--color-light-text);
+  position: relative;
+  padding-bottom: 15px;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 4px;
+  background-color: var(--color-accent);
+  border-radius: 3px;
+}
+
+
+/* --- Hero Section --- */
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px var(--space-section-padding-horizontal) 70px var(--space-section-padding-horizontal);
+  gap: 50px;
+  min-height: 70vh;
+  position: relative;
+  margin-bottom: var(--space-section-vertical);
+}
+
+.hero-text {
+  max-width: 600px;
+  flex-basis: 55%;
+  min-width: 320px;
+  z-index: 1;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-light-text);
+  margin-bottom: 25px;
+  line-height: 1.25;
+  letter-spacing: -0.5px;
+}
+
+.hero-text p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  margin-top: 20px;
+  line-height: 1.7;
+  color: var(--color-muted-text);
+}
+
+.hero-buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; /* Align buttons vertically if they wrap */
+  gap: var(--space-button-gap); /* Use updated variable */
+}
+
+
+/* --- UPDATED BUTTON STYLES --- */
+
+/* --- Enhanced Button Base --- */
+.btn-base {
+  position: relative; /* For potential pseudo-elements/effects */
+  overflow: hidden;   /* For potential ripple effects */
+  padding: 14px 30px; /* Adjust padding if needed */
+  /* --- MODIFIED BORDER RADIUS --- */
+  border-radius: var(--border-radius-pill); /* Use the pill radius variable */
+  font-size: clamp(1rem, 2vw, 1.05rem); /* Slightly adjust size */
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 2px solid transparent; /* Base border */
+  /* Smoother transition */
+  transition:
+      background-color var(--transition-speed) var(--transition-timing),
+      color var(--transition-speed) var(--transition-timing),
+      border-color var(--transition-speed) var(--transition-timing),
+      transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Faster transform */
+      box-shadow var(--transition-speed) var(--transition-timing);
+  /* Subtle initial shadow */
+   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Enhanced Base Hover - applies lift */
+.btn-base:hover {
+  transform: translateY(-3px);
+  /* Shadow adjusted in specific button styles */
+}
+.btn-base:focus-visible {
+   outline: none;
+   /* Focus ring will be added in specific styles */
+}
+.btn-base:active {
+  transform: translateY(-1px) scale(0.98); /* Slightly press down */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Reduced shadow when pressed */
+}
+
+
+/* --- Primary Button (.btn-light - "Let's Cook") --- */
+.btn-light {
+  /* Subtle Gradient */
+  background-image: linear-gradient(145deg, var(--color-accent-hover), var(--color-accent));
+  background-color: var(--color-accent); /* Fallback */
+  color: var(--color-dark-base);
+  border-color: transparent; /* No border needed for filled */
+  /* Enhanced shadow with subtle color */
+  box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.2),
+              0 2px 5px rgba(0,0,0, 0.1);
+}
+
+.btn-light:hover {
+  /* Keep transform from base */
+  background-image: linear-gradient(145deg, #ffdd40, var(--color-accent-hover)); /* Brighter gradient */
+   /* Stronger colored shadow */
+  box-shadow: 0 8px 20px rgba(var(--color-accent-rgb), 0.3),
+              0 4px 8px rgba(0,0,0, 0.15);
+}
+
+.btn-light:focus-visible {
+   /* Add a distinct focus ring */
+    box-shadow: 0 0 0 3px var(--color-dark-secondary), 0 0 0 5px var(--color-accent),
+                0 5px 15px rgba(var(--color-accent-rgb), 0.2);
+}
+
+
+/* --- Secondary Button (.btn-dark - "Explore Now") --- */
+.btn-dark {
+  background-color: transparent;
+  color: var(--color-light-text);
+  border-color: var(--color-muted-text); /* Start with muted border */
+  /* Less intense shadow for outline button */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-dark:hover {
+  /* Fill with accent color on hover */
+  background-color: var(--color-accent);
+  color: var(--color-dark-base);
+  border-color: var(--color-accent); /* Match background */
+  /* Add colored shadow */
+  box-shadow: 0 8px 20px rgba(var(--color-accent-rgb), 0.25),
+              0 4px 8px rgba(0,0,0, 0.1);
+}
+
+.btn-dark:focus-visible {
+   /* Outline focus using accent color */
+   border-color: var(--color-accent); /* Make border accent on focus */
+   background-color: rgba(var(--color-accent-rgb), 0.1); /* Slight bg tint */
+   box-shadow: 0 0 0 3px var(--color-dark-secondary), 0 0 0 5px var(--color-accent),
+               0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- END OF UPDATED BUTTON STYLES --- */
+
+.hero-image {
+  flex-basis: 35%;
+  min-width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  width: clamp(300px, 100%, 480px);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 10px 30px var(--color-dark-shadow-medium);
+}
+
+/* --- Features Section --- */
+.features-section {
+  text-align: center;
+}
+
+.features-section h2 {
+   font-size: clamp(2rem, 4.5vw, 2.6rem);
+   font-weight: var(--font-weight-bold);
+   text-align: center;
+   margin-bottom: var(--space-title-margin-bottom);
+   color: var(--color-light-text);
+}
+
+.feature-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-grid-gap);
+}
+
+.feature-card {
+  background: linear-gradient(145deg, var(--color-dark-secondary), rgba(28, 42, 65, 0.7));
+  padding: 25px;
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  transition: transform var(--transition-speed) var(--transition-timing),
+              box-shadow var(--transition-speed) var(--transition-timing),
+              background var(--transition-speed) var(--transition-timing);
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 4px 10px var(--color-dark-shadow-soft);
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover, .feature-card:focus-within {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px var(--color-dark-shadow-medium);
+  background: linear-gradient(145deg, var(--color-dark-secondary), rgba(40, 58, 85, 0.9));
+  outline: none;
+}
+
+/* Circular Feature Images using .feature-img */
+.feature-card img.feature-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  padding: 15px;
+  box-sizing: border-box;
+  object-fit: scale-down;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+}
+
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 10px;
+    color: var(--color-light-text);
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-muted-text);
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
+
+.learn-more {
+  /* Assuming .learn-more IS a button/link, style it consistently */
+  /* OR create a specific .btn-learn-more */
+  position: relative;
+  overflow: hidden;
+  padding: 8px 18px;
+  border-radius: 6px; /* Smaller radius */
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.3;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid transparent;
+  margin-top: auto; /* Keep pushing to bottom */
+  color: var(--color-accent);
+  background-color: rgba(var(--color-accent-rgb), 0.1); /* Accent tint bg */
+  transition: all 0.25s ease-out;
+}
+.learn-more::after { /* Existing arrow */
+    content: '→';
+    margin-left: 6px;
+    transition: transform var(--transition-speed) ease;
+    display: inline-block;
+}
+.learn-more:hover, .learn-more:focus-visible {
+    background-color: var(--color-accent);
+    color: var(--color-dark-base);
+    box-shadow: 0 4px 12px rgba(var(--color-accent-rgb), 0.25);
+    transform: translateY(-2px);
+    outline: none;
+}
+.learn-more:hover::after, .learn-more:focus-visible::after {
+    transform: translateX(4px);
+}
+
+
+/* --- Expert Chefs Section --- */
+.expert-chefs {
+  text-align: center;
+  background: var(--color-dark-secondary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-section-padding-vertical) var(--space-section-padding-horizontal);
+  margin-bottom: var(--space-section-vertical);
+}
+
+.expert-chefs h3.section-title {
+  color: #ffffff;
+}
+
+.chefs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-grid-gap);
+}
+
+.chef-card {
+  background: var(--color-dark-base);
+  padding: 25px;
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  border: 1px solid var(--color-border-subtle);
+  transition: transform var(--transition-speed) var(--transition-timing), box-shadow var(--transition-speed) var(--transition-timing);
+  box-shadow: 0 4px 10px var(--color-dark-shadow-soft);
+}
+.chef-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px var(--color-dark-shadow-medium);
+}
+
+.chef-card img.chef-image {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 20px auto;
+  border: 4px solid var(--color-accent);
+  box-shadow: 0 0 15px rgba(var(--color-accent-rgb), 0.3);
+}
+.chef-card h4 {
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 8px;
+    color: var(--color-light-text);
+}
+.chef-card p {
+    font-size: 0.9rem;
+    color: var(--color-muted-text);
+    line-height: 1.5;
+}
+
+
+/* --- Gallery Section --- */
+.gallery-section {
+    text-align: center;
+    padding: var(--space-section-padding-vertical) var(--space-section-padding-horizontal);
+    margin-bottom: var(--space-section-vertical);
+}
+
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-md); /* Keep card radius moderate */
+  transition: transform var(--transition-speed) var(--transition-timing), box-shadow var(--transition-speed) var(--transition-timing);
+  background-color: var(--color-dark-secondary);
+  border: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 230px;
+  display: block;
+  border-radius: var(--border-radius-md); /* Match card radius */
+  object-fit: cover;
+  transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+}
+
+.gallery-item:hover, .gallery-item:focus-visible {
+  transform: scale(1.04);
+  box-shadow: 0 10px 25px var(--color-dark-shadow-medium);
+  outline: none;
+}
+.gallery-item:hover img, .gallery-item:focus-visible img {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+
+.gallery-item .description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, var(--color-dark-overlay) 0%, rgba(10, 16, 31, 0) 100%);
+  color: var(--color-light-text);
+  padding: 20px 15px 15px 15px;
+  border-bottom-left-radius: var(--border-radius-md); /* Match card radius */
+  border-bottom-right-radius: var(--border-radius-md); /* Match card radius */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  pointer-events: none;
+}
+
+.gallery-item:hover .description, .gallery-item:focus-visible .description {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-item h3 {
+  font-size: 1.1rem;
+  margin: 0 0 5px 0;
+  font-weight: var(--font-weight-semibold);
+}
+.gallery-item p {
+  font-size: 0.85rem;
+  margin: 0;
+  color: var(--color-muted-text);
+}
+
+/* --- Community Section Styles --- */
+.community-section {
+  padding: var(--space-section-padding-vertical) var(--space-section-padding-horizontal);
+  margin-bottom: var(--space-section-vertical);
+  text-align: center;
+  position: relative;
+}
+
+.community-section h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.community-section p {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
+  line-height: 1.7;
+  color: var(--color-muted-text);
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+}
+
+/* Community Join button - Apply base style or create unique */
+/* Here applying btn-base and btn-light styles via class in JSX */
+.community-section .btn-join {
+    /* If using <Link className="btn-base btn-light"> */
+    /* No specific rules needed here, already styled */
+    /* OR, create unique style */
+    /* Example: Inherit base but change color */
+    /* background: var(--color-primary-action); */
+    /* border-color: var(--color-primary-action); */
+    /* color: white; */
+     margin-bottom: 50px; /* Ensure space below button */
+}
+
+.community-image {
+  margin-top: 0;
+}
+
+.community-image img {
+    max-width: 100%;
+    height: auto;
+    width: clamp(300px, 70%, 500px);
+    border-radius: var(--border-radius-lg);
+}
+
+/* --- Reviews Section Specific Styles --- */
+.reviews-section {
+  padding: var(--space-section-padding-vertical) var(--space-section-padding-horizontal);
+  background-color: var(--color-dark-secondary);
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--space-section-vertical);
+}
+
+.reviews-section h1 {
+  font-size: clamp(2rem, 4.5vw, 2.6rem);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--space-title-margin-bottom);
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.reviews-section h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70px;
+  height: 4px;
+  background-color: var(--color-accent);
+  border-radius: 3px;
+}
+
+
+/* --- Review Submission Form --- */
+.review-form {
+  max-width: 650px;
+  margin: 0 auto; /* Center form */
+  padding: 35px 40px;
+  background-color: var(--color-dark-base);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--color-border-medium);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+
+.review-form h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--color-light-text);
+  font-size: 1.6rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.review-form .form-group {
+  margin-bottom: 25px;
+}
+
+.review-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-muted-text);
+  font-size: 0.95rem;
+}
+
+.review-form textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--border-radius-md); /* Use moderate radius for inputs */
+  font-size: 1rem;
+  min-height: 120px;
+  resize: vertical;
+  background-color: rgba(28, 42, 65, 0.5);
+  color: var(--color-light-text);
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.review-form textarea::placeholder {
+  color: var(--color-muted-text);
+  opacity: 0.8;
+}
+.review-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.2);
+}
+
+.review-form .star-rating-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.star-rating-input {
+    line-height: 1;
+}
+.star-rating-input .star {
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  color: var(--color-star-inactive);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  margin-right: 6px;
+  display: inline-block;
+}
+.star-rating-input .star.filled {
+  color: var(--color-accent);
+}
+.star-rating-input .star:hover {
+    color: var(--color-accent-hover);
+    transform: scale(1.15) rotate(5deg);
+}
+.star-rating-input .star:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 50%;
+}
+
+.btn-submit-review {
+  /* Reuse .btn-base and another class like .btn-primary if desired */
+  /* Or keep unique style */
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  background: var(--color-primary-action);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-pill); /* Make submit button rounded too */
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-speed) var(--transition-timing);
+  margin-top: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+.btn-submit-review:hover:not(:disabled), .btn-submit-review:focus-visible {
+  background-color: var(--color-primary-action-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  outline: none;
+}
+.btn-submit-review:disabled {
+    background-color: var(--color-star-inactive);
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+}
+
+.submit-message {
+    padding: 14px 18px;
+    margin-top: 20px;
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    font-size: 1rem;
+    border: 1px solid transparent;
+    font-weight: var(--font-weight-medium);
+}
+.submit-message.success {
+    background-color: var(--color-success-bg);
+    color: var(--color-success-text);
+    border-color: var(--color-success-border);
+}
+.submit-message.error {
+    background-color: var(--color-error-bg);
+    color: var(--color-error-text);
+    border-color: var(--color-error-border);
+}
+
+
+/* --- Approved Reviews Display --- */
+.approved-reviews-display {
+  margin-top: 50px;
+  padding-top: 50px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.approved-reviews-display h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--color-light-text);
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.review-list.public-review-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-grid-gap);
+  text-align: left;
+}
+
+.review-card.public-review-card {
+  background-color: var(--color-dark-base);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--border-radius-lg);
+  padding: 25px;
+  box-shadow: 0 4px 10px var(--color-dark-shadow-soft);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+.review-card.public-review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px var(--color-dark-shadow-medium);
+}
+
+.public-review-card .review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.public-review-card .review-date {
+  font-size: 0.85rem;
+  color: var(--color-muted-text);
+}
+
+.public-review-card .review-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-light-text);
+  opacity: 0.95;
+  flex-grow: 1;
+  margin-top: 8px;
+}
+
+.star-rating-display {
+    line-height: 1;
+    white-space: nowrap;
+}
+.star-rating-display .star {
+  color: var(--color-star-inactive);
+  font-size: 1.1rem;
+  margin-right: 3px;
+}
+.star-rating-display .star.filled {
+  color: var(--color-accent);
+}
+
+/* --- Contact Sub-Section --- */
+.contact-section {
+    padding: var(--space-section-padding-vertical) var(--space-section-padding-horizontal);
+    margin-bottom: var(--space-section-vertical);
+    margin-top: 70px;
+    border-top: 1px solid var(--color-border-subtle);
+    text-align: center; /* Center contact info */
+}
+
+.contact-section h1 {
+   font-size: clamp(1.6rem, 4vw, 2rem);
+   text-align: center;
+   margin-bottom: 30px;
+   font-weight: var(--font-weight-semibold);
+    color: var(--color-light-text); /* Ensure heading color */
+}
+
+.contact-section p {
+  font-size: 1.05rem;
+  margin: 10px auto; /* Reduced vertical margin */
+  max-width: 650px;
+  text-align: center;
+  line-height: 1.7;
+  color: var(--color-muted-text);
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(230, 241, 255, 0.08);
+    transition: transform var(--transition-speed) ease, background-color var(--transition-speed) ease;
+}
+
+.social-icons img {
+  width: 22px;
+  height: 22px;
+  filter: grayscale(50%) brightness(1.2);
+  transition: filter var(--transition-speed) ease;
+}
+
+.social-icons a:hover, .social-icons a:focus-visible {
+  transform: translateY(-4px) scale(1.1);
+  background-color: var(--color-accent);
+  outline: none;
+}
+.social-icons a:hover img, .social-icons a:focus-visible img {
+    filter: grayscale(0%) brightness(0.8);
+}
+
+/* --- Footer Section --- */
+.footer-section {
+  text-align: center;
+  margin-top: var(--space-section-vertical);
+  padding: 40px var(--space-section-padding-horizontal);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.footer-section p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-muted-text);
+}
+
+/* --- Media Queries --- */
+@media (max-width: 992px) {
+    :root {
+        --space-section-vertical: 90px;
+        --space-section-padding-vertical: 60px;
+        --space-title-margin-bottom: 50px;
+        --space-grid-gap: 30px;
+        --space-button-gap: 18px; /* Slightly adjust gap */
+    }
+    /* Adjust Hero Buttons */
+    .hero-buttons {
+        gap: var(--space-button-gap);
+    }
+
+    .hero-section {
+        justify-content: center;
+        text-align: center;
+        gap: 40px;
+        margin-bottom: var(--space-section-vertical);
+    }
+    .hero-text {
+        flex-basis: 80%;
+        max-width: 700px;
+    }
+    .hero-image {
+        flex-basis: 60%;
+        margin-top: 40px;
+    }
+    .feature-cards, .chefs-container, .review-list.public-review-list {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+    /* Feature Images (Medium Screens) */
+    .feature-card img.feature-img {
+        width: 140px;
+        height: 140px;
+        padding: 12px;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+    }
+     .gallery-item img {
+        height: 210px;
+    }
+}
+
+@media (max-width: 768px) {
+   :root {
+        --space-section-vertical: 80px;
+        --space-section-padding-vertical: 50px;
+        --space-title-margin-bottom: 40px;
+        --space-grid-gap: 25px;
+        --space-button-gap: 15px; /* Gap for potentially stacked buttons */
+    }
+  .home-container {
+      padding: 0 15px 30px 15px;
+  }
+  .section-padding {
+      padding-left: 3%;
+      padding-right: 3%;
+      margin-bottom: var(--space-section-vertical);
+  }
+   .reviews-section {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+  .reviews-form-contact-section {
+      margin-bottom: 0;
+      padding-left: 3%;
+      padding-right: 3%;
+  }
+
+
+  .hero-section {
+    flex-direction: column-reverse;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    min-height: auto;
+    gap: 30px;
+    margin-bottom: var(--space-section-vertical);
+  }
+  .hero-text {
+    max-width: 100%;
+    flex-basis: auto;
+    text-align: center; /* Center text on mobile */
+  }
+  .hero-image {
+    flex-basis: auto;
+    margin-bottom: 30px;
+    margin-top: 0;
+  }
+  .hero-buttons {
+    justify-content: center; /* Center buttons horizontally */
+    margin-top: 30px;
+  }
+  .btn-base {
+      flex-grow: 0;
+      flex-shrink: 1; /* Ensure they don't stretch too much */
+  }
+  .section-title, .reviews-section h1 { /* Adjust titles */
+      font-size: clamp(1.8rem, 6vw, 2.1rem);
+  }
+
+  .feature-cards, .chefs-container, .review-list.public-review-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+   /* Feature Images (Small Screens) */
+  .feature-card img.feature-img {
+      width: 130px;
+      height: 130px;
+      padding: 10px;
+  }
+  .gallery-grid {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+   .gallery-item img {
+        height: 200px;
+    }
+  .review-form {
+      padding: 25px 20px;
+  }
+  .community-section h1 {
+    font-size: clamp(1.8rem, 4.5vw, 2.4rem);
+  }
+  .community-section p {
+     font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+  }
+
+  .contact-section {
+      margin-top: 50px;
+      padding-top: 40px;
+  }
+  .contact-section p {
+      font-size: 1rem;
+  }
+  .social-icons {
+      gap: 15px;
+      margin-top: 25px;
+  }
+  .social-icons a {
+      width: 40px;
+      height: 40px;
+  }
+   .social-icons img {
+      width: 20px;
+      height: 20px;
+  }
+   .footer-section {
+        margin-top: var(--space-section-vertical);
+   }
+}
+
+@media (max-width: 480px) {
+   :root {
+       --space-section-vertical: 70px;
+       --space-section-padding-vertical: 40px;
+       --space-button-gap: 15px; /* Keep decent gap for stacked */
+   }
+    .hero-text h1 {
+        font-size: clamp(2rem, 8vw, 2.5rem);
+    }
+    /* Stack hero buttons */
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    /* Make stacked buttons wider */
+    .btn-base {
+        width: 85%;
+        padding: 13px 20px;
+        font-size: 1rem;
+    }
+
+    /* Feature Images (Extra Small Screens) */
+    .feature-card img.feature-img {
+        width: 120px;
+        height: 120px;
+        padding: 8px;
+    }
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+    .gallery-item img {
+        height: 190px;
+    }
+     .star-rating-input .star {
+        font-size: clamp(1.6rem, 6vw, 2rem);
+     }
+     .public-review-card .review-header {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 8px;
+     }
+      .community-section .btn-join {
+        width: 85%;
+        padding: 13px 20px;
+     }
+      .community-image img {
+         width: clamp(250px, 90%, 400px);
+     }
+
+     .footer-section {
+        margin-top: var(--space-section-vertical);
+        padding: 30px 3%;
+     }
+     .footer-section p {
+        font-size: 0.85rem;
+     }
+}

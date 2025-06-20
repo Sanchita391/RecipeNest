@@ -1,0 +1,26 @@
+.navbar {
+  background-color: #516b8b;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  font-size: 18px;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+/* Logo Styling */
+/* Logo Styling */
+.hero-img {
+  width: 20px;  /* Adjust the width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px; /* Optional: smooth rounded edges */
+}
+
+
+
+.navbar a:hover {
+  color: #f8b400;
+}

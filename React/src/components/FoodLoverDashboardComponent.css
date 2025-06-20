@@ -1,0 +1,397 @@
+/* ✅ FoodLoverDashboardComponent.css */
+/* Dark Theme BASE, WHITE Recipe Cards, Pure BLACK Text */
+
+/* --- Root Variables --- */
+:root {
+  /* Base Dark Theme Colors (used for navbar, page bg, etc.) */
+  --color-dark-base: #0a101f;
+  --color-dark-secondary: #1c2a41;
+  --color-light-text: #e6f1ff;
+  --color-muted-text-darkbg: #a0aec0;
+  --color-accent: #ffd700;             /* Gold accent */
+  --color-accent-hover: #e6c300;       /* Darker gold */
+  --color-accent-rgb: 255, 215, 0;     /* Gold RGB */
+  --color-border-subtle: rgba(230, 241, 255, 0.1);
+  --color-border-medium: rgba(230, 241, 255, 0.2);
+  --color-dark-shadow-soft: rgba(0, 0, 0, 0.2);
+  --color-dark-shadow-medium: rgba(0, 0, 0, 0.35);
+  --color-star-inactive-darkbg: #5a6f8a;
+
+  /* --- Colors for WHITE Recipe Cards --- */
+  --color-card-bg: #ffffff;             /* Card background is WHITE */
+  --color-card-text: #000000;            /* Card main text is pure BLACK */
+  --color-card-text-muted: #495057;     /* Card muted text is DARK GREY */
+  --color-card-border: #dee2e6;         /* Light grey border for cards */
+  --color-card-separator: #e9ecef;      /* Lighter grey for internal separators */
+  --color-card-shadow: rgba(0, 0, 0, 0.08);
+  --color-card-hover-shadow: rgba(0, 0, 0, 0.12);
+  --color-star-inactive-lightbg: #6c757d; /* Dark grey for inactive stars on light bg */
+  --color-placeholder-bg-light: #f8f9fa; /* Very light grey for image placeholder */
+  --color-social-icon-bg: #f1f3f5;       /* Light grey for social icon background */
+  --color-social-icon-hover-bg: #495057; /* Dark grey for social icon hover bg */
+  --color-social-icon-color: #495057;    /* Dark grey for social icon color */
+  --color-social-icon-hover-color: #ffffff;/* White for social icon hover color */
+
+  /* General UI variables */
+  --color-primary-action: #3498db; /* Blue (Example, adjust if needed) */
+  --color-primary-action-hover: #2980b9;
+  --color-secondary-action: #6c757d; /* Grey */
+  --color-secondary-action-hover: #5c636a;
+  --color-danger-text: #f8d7da; /* Light red text */
+  --color-danger-bg: rgba(220, 53, 69, 0.2); /* Transparent red bg */
+  --color-danger-border: rgba(220, 53, 69, 0.5); /* Semi-transparent red border */
+  --color-success-text: #d1e7dd; /* Light green text */
+  --color-success-bg: rgba(25, 135, 84, 0.2); /* Transparent green bg */
+  --color-success-border: rgba(25, 135, 84, 0.5); /* Semi-transparent green border */
+  --color-info-text: #cff4fc; /* Light cyan text */
+  --color-info-bg: rgba(13, 202, 240, 0.15); /* Transparent cyan bg */
+  --color-info-border: rgba(13, 202, 240, 0.4); /* Semi-transparent cyan border */
+
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --navbar-height: 65px;
+  --font-family-sans-serif: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --transition-speed: 0.25s;
+  --transition-timing: ease-in-out;
+}
+
+/* --- Base Layout, Navbar, Main Content, Status Messages (Dark Theme) --- */
+body {
+    font-family: var(--font-family-sans-serif);
+    margin: 0;
+    background-color: var(--color-dark-base); /* Dark background */
+    color: var(--color-light-text); /* Default text on dark bg */
+    line-height: 1.6;
+}
+
+.foodlover-dashboard-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--color-dark-base);
+}
+
+/* Dark Themed Navbar */
+.dashboard-navbar {
+    height: var(--navbar-height);
+    background-color: var(--color-dark-secondary); /* Dark blue */
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border-subtle);
+    box-shadow: 0 2px 8px var(--color-dark-shadow-soft);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    flex-shrink: 0;
+}
+.navbar-brand a { font-size: 1.6rem; font-weight: 600; color: var(--color-accent); text-decoration: none; transition: color var(--transition-speed) var(--transition-timing), opacity 0.2s ease; opacity: 0.95; }
+.navbar-brand a:hover { color: var(--color-accent-hover); opacity: 1; }
+.navbar-actions { display: flex; align-items: center; gap: 12px; }
+.navbar-button, .navbar-actions a.navbar-button { background-color: transparent; border: 1px solid transparent; padding: 9px 16px; border-radius: var(--border-radius-md); cursor: pointer; font-size: 0.98rem; font-weight: 500; color: var(--color-muted-text-darkbg); transition: all var(--transition-speed) var(--transition-timing); text-decoration: none; display: inline-flex; align-items: center; line-height: 1.4; }
+.navbar-button:hover:not(:disabled):not(.active), .navbar-actions a.navbar-button:hover:not(.active) { background-color: rgba(230, 241, 255, 0.08); color: var(--color-light-text); transform: translateY(-1px); }
+.navbar-button.active { color: var(--color-accent); font-weight: 600; background-color: rgba(var(--color-accent-rgb), 0.1); box-shadow: inset 0 -2px 0 var(--color-accent); }
+.navbar-button:disabled { color: var(--color-star-inactive-darkbg); cursor: not-allowed; opacity: 0.6; transform: none; }
+.navbar-button:focus-visible, .navbar-actions a.navbar-button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; background-color: rgba(var(--color-accent-rgb), 0.1); color: var(--color-accent); box-shadow: none; }
+.navbar-button.logout-button { color: #f5c2c7; /* Light red */ }
+.navbar-button.logout-button:hover:not(:disabled) { background-color: var(--color-danger-bg); color: #f8d7da; border-color: var(--color-danger-border); transform: translateY(-1px); box-shadow: 0 2px 5px rgba(220, 53, 69, 0.2); }
+.navbar-button.logout-button:focus-visible { outline-color: var(--color-danger-text); background-color: var(--color-danger-bg); border-color: var(--color-danger-border); color: #f8d7da; }
+
+/* Main Content Area */
+.dashboard-main-content { flex-grow: 1; padding: 35px 45px; overflow-y: auto; }
+.dashboard-main-content h1 { margin-top: 0; margin-bottom: 35px; color: var(--color-light-text); /* Light text for main headings outside cards */ font-size: clamp(1.8rem, 4vw, 2.2rem); font-weight: 600; border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 18px; }
+
+/* Status Messages (Dark Theme Styling) */
+.loading-message, .error-message, .info-message, .success-message { text-align: center; font-size: 1.05em; padding: 15px 20px; margin: 25px auto; max-width: 800px; border-radius: var(--border-radius-md); border: 1px solid transparent; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 3px 6px var(--color-dark-shadow-soft); }
+.loading-message { color: var(--color-muted-text-darkbg); background-color: transparent; box-shadow: none; }
+.error-message { color: var(--color-danger-text); background-color: var(--color-danger-bg); border-color: var(--color-danger-border); font-weight: 500; }
+.info-message { color: var(--color-info-text); background-color: var(--color-info-bg); border-color: var(--color-info-border); }
+.success-message { color: var(--color-success-text); background-color: var(--color-success-bg); border-color: var(--color-success-border); }
+
+/* Smaller Submit Messages (e.g., review form) */
+.submit-message { font-size: 0.95rem; padding: 12px 15px; margin-top: 15px; border-radius: var(--border-radius-sm); text-align: center; font-weight: 500; }
+.submit-message.error { color: var(--color-danger-text); background-color: var(--color-danger-bg); border: 1px solid var(--color-danger-border); }
+.submit-message.success { color: var(--color-success-text); background-color: var(--color-success-bg); border: 1px solid var(--color-success-border); }
+
+/* --- Dashboard Home View --- */
+/* Relies on Home.css but ensure base text is light for elements not styled by Home.css */
+
+.dashboard-home-view h1, .dashboard-home-view h3 { color: var(--color-light-text); /* Ensure headings are light */ }
+.dashboard-home-view p { color: var(--color-muted-text-darkbg); /* Ensure paragraphs are muted light */ }
+
+/* Category Tabs for Recipe View (Dark Theme Styling) */
+.category-tabs { margin-bottom: 35px; display: flex; flex-wrap: wrap; gap: 12px; border-bottom: 1px solid var(--color-border-subtle); padding-bottom: 12px; }
+.tab-button { background-color: transparent; color: var(--color-muted-text-darkbg); border: none; border-bottom: 3px solid transparent; padding: 9px 14px; border-radius: 0; cursor: pointer; font-size: 1rem; font-weight: 500; transition: all var(--transition-speed) var(--transition-timing); }
+.tab-button:hover:not(.active):not(:disabled) { color: var(--color-light-text); background-color: rgba(230, 241, 255, 0.05); }
+.tab-button.active { color: var(--color-accent); border-bottom-color: var(--color-accent); font-weight: 600; }
+.tab-button:disabled { color: var(--color-star-inactive-darkbg); cursor: not-allowed; }
+.tab-button:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-bottom-color: var(--color-accent); color: var(--color-accent); }
+
+/* ============ RECIPE CARD STYLES (WHITE CARD, BLACK/DARK GREY TEXT) ============ */
+.recipe-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); /* Adjust minmax for desired card size */
+    gap: 30px;
+}
+
+.recipe-card {
+    background-color: var(--color-card-bg); /* WHITE background */
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 10px var(--color-card-shadow);
+    border: 1px solid var(--color-card-border);
+    overflow: hidden;
+    display: flex; flex-direction: row; /* Side-by-side layout */
+    gap: 0; /* No gap, padding handles spacing */
+    padding: 0;
+    transition: transform var(--transition-speed) var(--transition-timing), box-shadow var(--transition-speed) var(--transition-timing);
+    height: 100%; /* For consistent row heights */
+}
+.recipe-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px var(--color-card-hover-shadow);
+}
+
+/* Image Container within White Card */
+.recipe-image-container {
+    flex-basis: 40%; /* Image area percentage */
+    flex-shrink: 0;
+    position: relative; /* For placeholder positioning */
+    background-color: var(--color-placeholder-bg-light); /* Light placeholder bg */
+    min-height: 200px; /* Minimum height */
+    align-self: stretch; /* Stretch to card height */
+    overflow: hidden; /* Clip image */
+    display: flex; /* Needed for placeholder centering */
+    align-items: center;
+    justify-content: center;
+}
+.recipe-image-container .recipe-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container */
+    display: block;
+    border: none; /* No extra border */
+}
+/* Image Placeholder */
+.recipe-image-container .recipe-image-placeholder {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: var(--color-card-text-muted); /* Dark grey text */
+    font-style: italic; text-align: center; padding: 10px; font-size: 0.9rem;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--color-placeholder-bg-light);
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+    z-index: 1; /* Below potentially visible image initially */
+}
+.recipe-image-container .recipe-image-placeholder i {
+    font-size: 1.5em; margin-bottom: 0.4em;
+}
+/* Show Placeholder Logic */
+.recipe-image-container img[style*="display: none"] + .recipe-image-placeholder, /* If img hidden via JS */
+.recipe-image-container.image-error .recipe-image-placeholder, /* If container has error class */
+.recipe-image-container:not(:has(img)) .recipe-image-placeholder /* If no img tag present */
+{
+    opacity: 1; /* Make visible */
+    z-index: 3; /* Ensure it's on top */
+}
+
+
+/* Content Container within White Card */
+.recipe-content-container {
+    flex-basis: 60%; /* Text area percentage */
+    padding: 20px 25px; /* Padding around text */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-start; /* Align content to the top */
+}
+.recipe-content-container h3 {
+    font-size: 1.35rem; margin: 0 0 10px 0;
+    color: var(--color-card-text); /* BLACK text */
+    font-weight: 600; line-height: 1.3;
+}
+.recipe-content-container p { /* Includes description and labels like Type: */
+    font-size: 0.95rem;
+    color: var(--color-card-text-muted); /* DARK GREY text */
+    margin-bottom: 8px; line-height: 1.5;
+}
+.recipe-content-container p:last-of-type { margin-bottom: 0; }
+.recipe-content-container p strong { /* Make labels like "Type:", "Description:" black */
+    color: var(--color-card-text); /* BLACK text */
+    font-weight: 600;
+    margin-right: 5px;
+}
+/* Description Specifics */
+.recipe-content-container .recipe-description {
+    flex-grow: 1; /* Allows description to push items below it down */
+    margin-bottom: 15px;
+    min-height: 50px; /* Give description some minimum space */
+    color: var(--color-card-text-muted); /* Explicitly set description text */
+}
+
+/* Rating Section within White Card */
+.recipe-content-container .rating-section {
+    margin-top: auto; /* Pushes rating & below towards the bottom */
+    padding-top: 15px;
+    border-top: 1px solid var(--color-card-separator);
+    margin-bottom: 10px; /* Space before view count */
+}
+.rating-section p { /* "Rate this recipe:" label */
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--color-card-text-muted); /* DARK GREY text */
+    margin-bottom: 8px;
+}
+.rating-stars { font-size: 1.5em; margin-bottom: 10px; line-height: 1; color: var(--color-star-inactive-lightbg); /* Inactive stars for light bg */ }
+.rating-stars .star { cursor: pointer; margin-right: 3px; transition: color 0.15s ease, transform 0.15s ease; display: inline-block; }
+.rating-stars .star:hover { color: var(--color-accent-hover); transform: scale(1.15); }
+.rating-stars .star.selected { color: var(--color-accent); } /* Selected stars still gold */
+.rating-stars .star:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 50%; }
+.action-button.rate-button {
+    margin-top: 5px;
+    padding: 7px 14px;
+    font-size: 0.85rem;
+    /* Uses PRIMARY action button style (Gold bg, Dark text - defined below) */
+}
+
+/* ==== ADDED View Count Style ==== */
+.recipe-view-count {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Space between icon and text */
+    font-size: 0.9rem;
+    color: var(--color-card-text-muted); /* Dark grey text */
+    margin-bottom: 15px; /* Space before social share */
+    margin-top: 5px;     /* Small space after rating */
+}
+.recipe-view-count i.fas.fa-eye { /* Style the icon */
+    font-size: 0.95em; /* Adjust size relative to text */
+    color: var(--color-card-text-muted); /* Match text color */
+}
+/* ==== END View Count Style ==== */
+
+/* Social Share Section within White Card */
+.social-share-section {
+    padding-top: 15px;
+    border-top: 1px solid var(--color-card-separator);
+}
+.social-share-section p { /* "Share this recipe:" label */
+    font-size: 0.9rem; font-weight: 500;
+    color: var(--color-card-text-muted); /* DARK GREY text */
+    margin-bottom: 10px;
+}
+.social-icons { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.social-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; text-decoration: none; background-color: var(--color-social-icon-bg); color: var(--color-social-icon-color); font-size: 1rem; transition: transform var(--transition-speed) var(--transition-timing), background-color var(--transition-speed) var(--transition-timing), color var(--transition-speed) var(--transition-timing); }
+.social-icon svg, .social-icon i { display: block; }
+.social-icon:hover { transform: scale(1.1); background-color: var(--color-social-icon-hover-bg); color: var(--color-social-icon-hover-color); }
+/* ============ END OF WHITE CARD STYLES ============ */
+
+
+/* --- Profile Update Form (DARK THEME) --- */
+.profile-update-container { padding: 20px 0; }
+.profile-form { background-color: var(--color-dark-secondary); padding: 40px; border-radius: var(--border-radius-lg); max-width: 600px; margin: 20px auto; box-shadow: 0 6px 20px var(--color-dark-shadow-medium); border: 1px solid var(--color-border-medium); }
+.profile-form h3 { color: var(--color-accent); text-align: center; margin: 0 0 25px 0; font-size: 1.6rem; font-weight: 600; }
+.profile-form p { text-align: center; color: var(--color-muted-text-darkbg); margin-bottom: 35px; font-size: 1rem; line-height: 1.6; }
+.profile-form label { display: block; margin-bottom: 10px; font-weight: 500; font-size: 0.95rem; color: var(--color-muted-text-darkbg); }
+.profile-form input { display: block; width: 100%; padding: 13px 18px; margin-bottom: 25px; border: 1px solid var(--color-border-medium); border-radius: var(--border-radius-md); box-sizing: border-box; font-size: 1rem; color: var(--color-light-text); background-color: rgba(10, 16, 31, 0.7); transition: border-color var(--transition-speed) var(--transition-timing), box-shadow var(--transition-speed) var(--transition-timing); }
+.profile-form input::placeholder { color: var(--color-star-inactive-darkbg); opacity: 0.8; }
+.profile-form input:focus { border-color: var(--color-accent); outline: 0; background-color: var(--color-dark-base); box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.25); }
+.profile-form button.action-button { width: 100%; padding: 13px; font-size: 1.05rem; margin-top: 10px; /* Reduced top margin */ }
+.profile-form button.action-button[type="submit"] { margin-bottom: 12px; } /* Primary Gold Btn: Dark text */
+.profile-form button.action-button.cancel-button { margin-top: 8px; } /* Secondary Dark Btn: Light text */
+
+
+/* --- General Action Buttons (Used by Profile Form & Recipe Card Rate Button) --- */
+/* Primary: Gold Background, DARK Text */
+.action-button {
+    background: linear-gradient(145deg, var(--color-accent-hover), var(--color-accent));
+    color: #1F1F1F; /* Dark text for contrast on gold */
+    border: none; padding: 12px 24px; margin-top: 10px; border-radius: var(--border-radius-md); cursor: pointer; font-size: 1rem; font-weight: 600; transition: all var(--transition-speed) var(--transition-timing); display: inline-block; box-shadow: 0 4px 10px rgba(var(--color-accent-rgb), 0.15), 0 2px 4px rgba(0,0,0,0.1); text-align: center; line-height: 1.5;
+}
+.action-button:hover:not(:disabled) { background: linear-gradient(145deg, #ffdd40, var(--color-accent-hover)); box-shadow: 0 6px 15px rgba(var(--color-accent-rgb), 0.25), 0 3px 6px rgba(0,0,0,0.15); transform: translateY(-2px); }
+.action-button:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--color-dark-secondary), 0 0 0 5px var(--color-accent); }
+.action-button:disabled { background: var(--color-star-inactive-darkbg); color: rgba(230, 241, 255, 0.6); opacity: 0.7; cursor: not-allowed; box-shadow: none; transform: none; }
+
+/* Secondary: Dark Background, LIGHT Text (e.g., Cancel button in profile) */
+.action-button.secondary, .action-button.cancel-button {
+    background: transparent;
+    color: var(--color-muted-text-darkbg);
+    border: 1px solid var(--color-border-medium);
+    box-shadow: none;
+}
+.action-button.secondary:hover:not(:disabled), .action-button.cancel-button:hover:not(:disabled) { background: rgba(230, 241, 255, 0.08); color: var(--color-light-text); border-color: var(--color-border-medium); box-shadow: 0 2px 5px rgba(0,0,0,0.1); transform: translateY(-1px); }
+.action-button.secondary:focus-visible, .action-button.cancel-button:focus-visible { border-color: var(--color-muted-text-darkbg); box-shadow: 0 0 0 3px rgba(160, 174, 192, 0.25); color: var(--color-light-text); }
+
+/* --- Star Rating Input Specifics (For Platform Review) --- */
+/* Needs styles within the Home.css scope potentially, or define here if only used in dashboard */
+.star-rating-input { display: inline-block; margin-left: 10px; }
+.star-rating-input .star { font-size: 1.8em; color: var(--color-star-inactive-lightbg); cursor: pointer; transition: color 0.2s ease; margin: 0 2px;}
+.star-rating-input .star.filled { color: var(--color-accent); }
+.star-rating-input .star:hover { color: var(--color-accent-hover); }
+
+
+/* --- Approved Reviews Display (Platform Reviews) --- */
+/* Define styles for the approved reviews section if not covered by Home.css */
+.approved-reviews-display { margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--color-border-subtle); }
+.approved-reviews-display h2 { color: var(--color-light-text); font-size: 1.5rem; margin-bottom: 20px; text-align: center; }
+.review-list.public-review-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.review-card.public-review-card { background-color: var(--color-dark-secondary); /* Dark card for reviews */ padding: 20px; border-radius: var(--border-radius-md); border: 1px solid var(--color-border-medium); }
+.public-review-card .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.public-review-card .star-rating-display .star { font-size: 1.1em; } /* Smaller stars */
+.public-review-card .star-rating-display .star.filled { color: var(--color-accent); }
+.public-review-card .star-rating-display .star:not(.filled) { color: var(--color-star-inactive-darkbg); }
+.public-review-card .review-date { font-size: 0.85rem; color: var(--color-muted-text-darkbg); }
+.public-review-card .review-text { color: var(--color-light-text); font-size: 0.95rem; line-height: 1.6; }
+
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .dashboard-main-content { padding: 25px 30px; }
+    .recipe-list { grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; } /* Adjust card size */
+    .profile-form { max-width: 90%; padding: 30px; }
+    /* Stack recipe card content earlier */
+    .recipe-card { flex-direction: column; }
+    .recipe-image-container { flex-basis: auto; width: 100%; max-height: 220px; min-height: 180px;}
+    .recipe-content-container { flex-basis: auto; }
+    .review-list.public-review-list { grid-template-columns: 1fr; } /* Stack public reviews */
+}
+
+@media (max-width: 768px) {
+    .dashboard-navbar { padding: 0 15px; height: auto; flex-direction: column; align-items: flex-start; padding-top: 10px; padding-bottom: 10px; }
+    .navbar-brand { margin-bottom: 10px; }
+    .navbar-actions { width: 100%; justify-content: flex-start; gap: 8px; flex-wrap: wrap; }
+    .navbar-button, .navbar-actions a.navbar-button { padding: 7px 12px; font-size: 0.9rem; }
+    .dashboard-main-content { padding: 20px 15px; }
+    .dashboard-main-content h1 { font-size: 1.6rem; margin-bottom: 25px; padding-bottom: 12px; }
+    .profile-form { max-width: 100%; margin: 20px 0; padding: 25px 20px; }
+    .profile-form button.action-button { padding: 12px; font-size: 1rem; }
+    .recipe-list { grid-template-columns: 1fr; gap: 20px; } /* Force single column */
+    .category-tabs { gap: 8px; }
+    .tab-button { padding: 7px 10px; font-size: 0.95rem; }
+    .recipe-image-container { max-height: 200px; aspect-ratio: 16 / 9; }
+    .recipe-content-container .recipe-description { min-height: auto; } /* Allow description to shrink */
+    .social-icons { flex-wrap: wrap; }
+}
+
+@media (max-width: 480px) {
+    .navbar-brand a { font-size: 1.3rem; }
+    .navbar-button, .navbar-actions a.navbar-button { padding: 6px 10px; font-size: 0.85rem; }
+    .dashboard-main-content { padding: 15px 10px; }
+    .dashboard-main-content h1 { font-size: 1.5rem; }
+    .profile-form { padding: 20px 15px; }
+    .profile-form input { padding: 12px 15px; }
+    .recipe-card { padding: 0; } /* Remove card padding if stacking */
+    .recipe-content-container { padding: 15px; } /* Add padding back to content */
+    .recipe-content-container h3 { font-size: 1.15rem; }
+    .recipe-content-container p { font-size: 0.9rem; }
+    .action-button { padding: 11px 20px; font-size: 0.95rem; }
+    .profile-form button.action-button { padding: 11px; }
+    .action-button.rate-button { padding: 6px 12px; font-size: 0.8rem; }
+    .rating-stars { font-size: 1.3em; }
+    .recipe-view-count { font-size: 0.85rem; }
+    .social-icon { width: 32px; height: 32px; font-size: 0.9rem; }
+}
+
+/* Include Font Awesome if not already globally included */
+/* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'); */
+/* Or ensure you have it set up via npm */

@@ -1,0 +1,115 @@
+/* Defines the styles for the section that displays the chefs. */
+.chefs-section {
+  /* Centers the text content within the section. */
+  text-align: center;
+  /* Adds 40 pixels of padding space around the content inside the section. */
+  padding: 40px;
+  /* Sets the background color of the section to a dark blue shade. */
+  background-color: #0b1a34; /* Comment indicating this is for a dark theme background. */
+  /* Sets the default text color within this section to white. */
+  color: white;
+}
+
+/* Defines the styles for the container that holds all the individual chef cards. */
+.chefs-container {
+  /* Arranges the child elements (chef cards) in a row using Flexbox. */
+  display: flex;
+  /* Allows the chef cards to wrap onto the next line if they exceed the container width. */
+  flex-wrap: wrap;
+  /* Distributes the chef cards evenly along the horizontal axis with space around them. */
+  justify-content: center;
+  /* Sets a gap of 40 pixels between the chef cards, both horizontally and vertically. */
+  gap: 40px; /* Comment indicating the purpose of the gap. */
+}
+
+/* Defines the styles for each individual chef card. */
+.chef-card {
+  /* Sets the background color of the card to a slightly lighter dark blue shade. */
+  background-color: #1e2a47; /* Comment indicating this is the card background color. */
+  /* Rounds the corners of the card by 12 pixels. */
+  border-radius: 12px;
+  /* Adds 20 pixels of padding space inside the card, around its content. */
+  padding: 20px;
+  /* Sets a fixed width of 230 pixels for each card. */
+  width: 230px;
+  /* Centers the text content within the card. */
+  text-align: center;
+  /* Adds a subtle shadow effect below the card for depth. */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Applies a smooth transition effect to the 'transform' property over 0.3 seconds with an ease timing function. */
+  transition: transform 0.3s ease;
+}
+
+/* Defines the styles for the chef card when the mouse cursor hovers over it. */
+.chef-card:hover {
+  /* Moves the card upwards by 8 pixels vertically using the transform property. */
+  transform: translateY(-8px);
+}
+
+/* Defines the styles for the container specifically holding the chef's image. */
+.chef-image-container {
+  /* Sets the width of the image container to 130 pixels. */
+  width: 130px;
+  /* Sets the height of the image container to 130 pixels. */
+  height: 130px;
+  /* Makes the image container perfectly circular by setting border-radius to 50%. */
+  border-radius: 50%;
+  /* Uses Flexbox to help center the image within this container. */
+  display: flex;
+  /* Vertically aligns the image in the center of the container. */
+  align-items: center;
+  /* Horizontally aligns the image in the center of the container. */
+  justify-content: center;
+  /* Sets top and bottom margins to 0, and auto left/right margins to center the container horizontally within the card. Adds 10px bottom margin. */
+  margin: 0 auto 10px;
+}
+
+/* Defines the styles for the actual chef image element (<img>). */
+.chef-image {
+  /* Sets the width of the image itself to 110 pixels. */
+  width: 110px;
+  /* Sets the height of the image itself to 110 pixels. */
+  height: 110px;
+  /* Makes the image perfectly circular. */
+  border-radius: 50%;
+  /* Scales the image to maintain its aspect ratio while filling the container, cropping if necessary. */
+  object-fit: cover;
+}
+
+/* Defines the styles for the <h3> heading (usually the chef's name) within the chef details section. */
+.chef-details h3 {
+  /* Sets the font size of the heading to 1.2 times the root element's font size. */
+  font-size: 1.2rem;
+  /* Sets the text color to white. */
+  color: white;
+  /* Sets the top margin to 10px, right and left margins to 0, and bottom margin to 5px. */
+  margin: 10px 0 5px;
+}
+
+/* Defines the styles for elements with the class 'role' within the chef details section. */
+.chef-details .role {
+  /* Sets the font size for the role text to 0.9 times the root element's font size. */
+  font-size: 0.9rem;
+  /* Sets the text color to a light gray shade. */
+  color: #cfcfcf;
+}
+
+/* Defines the styles for elements with the class 'rating' within the chef details section. */
+.chef-details .rating {
+  /* Sets the font size for the rating text to be the same as the root element's font size. */
+  font-size: 1rem;
+  /* Sets the text color to gold. */
+  color: gold;
+  /* Sets the top and bottom margins to 5px, and left and right margins to 0. */
+  margin: 5px 0;
+}
+
+/* Defines the styles for elements with the class 'specialty' within the chef details section. */
+.chef-details .specialty {
+  /* Sets the font size for the specialty text to 1.1 times the root element's font size. */
+  font-size: 1.1rem;
+  /* Makes the specialty text bold. */
+  font-weight: bold;
+  /* Sets the text color to white. */
+  color: white;
+}

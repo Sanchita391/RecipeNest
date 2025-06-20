@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'); /* Modern Font */
+
+/* --- Base Variables (Optional but helpful) --- */
+:root {
+  --auth-bg-start: #1a1c2d; /* Darker, slightly blueish */
+  --auth-bg-end: #0f111e;
+  --auth-accent: #ff6f00; /* Brighter, punchier orange */
+  --auth-accent-hover: #ff8f00;
+  --auth-text-primary: #f0f0f5; /* Slightly off-white */
+  --auth-text-secondary: #a0b0c0; /* Muted secondary text */
+  --auth-border-color: rgba(255, 255, 255, 0.15);
+  --auth-input-bg: rgba(255, 255, 255, 0.08);
+  --auth-input-focus-glow: rgba(255, 111, 0, 0.4);
+  --auth-error-color: #ff8a80; /* Light red for errors */
+  --auth-error-bg: rgba(255, 138, 128, 0.1);
+}
+
+/* --- Full-Screen Layout --- */
+.auth-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  /* Use a radial gradient for more depth */
+  background: radial-gradient(circle at top left, var(--auth-bg-start), var(--auth-bg-end));
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Apply modern font */
+}
+
+/* Optional: Subtle Noise Texture Overlay */
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity=".03"/></svg>');
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Chic Glassmorphism Auth Box --- */
+.auth-box {
+  position: relative; /* Ensure content stays above pseudo-elements */
+  z-index: 1;
+  background: rgba(30, 35, 55, 0.3); /* Slightly darker glass */
+  backdrop-filter: blur(15px) saturate(120%); /* Enhance blur and add saturation */
+  border-radius: 20px; /* Softer edges */
+  border: 1px solid var(--auth-border-color); /* Defined border */
+  padding: 45px 35px; /* More padding */
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3), /* Deeper shadow */
+              inset 0 1px 1px rgba(255, 255, 255, 0.05); /* Subtle inner highlight */
+  width: 400px; /* Slightly wider */
+  max-width: 90%; /* Prevent overflow on small screens */
+  color: var(--auth-text-secondary); /* Use secondary text for base */
+  text-align: left;
+}
+
+/* --- Headings --- */
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700; /* Bolder */
+  color: var(--auth-text-primary); /* Use primary text */
+  letter-spacing: 0.5px; /* Slight spacing */
+}
+
+/* --- Input Groups --- */
+.input-group {
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Needed for potential future floating labels */
+}
+
+.input-group label {
+  font-size: 13px; /* Slightly smaller */
+  color: var(--auth-text-secondary);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+  padding: 12px 15px; /* Comfortable padding */
+  border: 1px solid transparent; /* Start with transparent border */
+  border-radius: 10px; /* Match box rounding more */
+  font-size: 15px;
+  background-color: var(--auth-input-bg);
+  color: var(--auth-text-primary); /* Input text primary */
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  width: 100%; /* Ensure full width */
+  box-sizing: border-box; /* Include padding/border in width */
+}
+
+.input-group input::placeholder {
+  color: rgba(160, 176, 192, 0.7); /* Placeholder using secondary text with alpha */
+}
+
+/* Focus State */
+.input-group input:focus,
+.input-group select:focus {
+  background-color: rgba(255, 255, 255, 0.1); /* Slightly lighter bg on focus */
+  border-color: var(--auth-border-color); /* Show border on focus */
+  box-shadow: 0 0 0 3px var(--auth-input-focus-glow); /* Accent glow */
+}
+
+/* Select Arrow Styling (browser dependent, basic reset) */
+.input-group select {
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23a0b0c0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Custom arrow */
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  padding-right: 40px; /* Space for the arrow */
+}
+
+/* Dropdown Options */
+.input-group select option {
+  color: #000000; /* Black text on standard white dropdown */
+  background-color: #ffffff;
+}
+
+/* --- Primary Auth Button --- */
+.btn-auth {
+  width: 100%;
+  padding: 14px; /* More padding */
+  background: var(--auth-accent);
+  color: #ffffff; /* Ensure white text */
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 15px; /* More space before button */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.btn-auth:hover {
+  background-color: var(--auth-accent-hover);
+  transform: translateY(-2px); /* Lift effect */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+.btn-auth:focus-visible { /* Better accessibility */
+  outline: none;
+  box-shadow: 0 0 0 3px var(--auth-input-focus-glow), 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Secondary/Tertiary Links --- */
+.btn-home,
+.auth-switch-link {
+  display: block; /* Make them block for centering */
+  text-align: center;
+  font-size: 14px;
+  margin-top: 18px; /* Consistent spacing */
+}
+
+.btn-home {
+  color: var(--auth-text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.btn-home:hover {
+  color: var(--auth-text-primary);
+  text-decoration: underline;
+}
+
+.auth-switch-link a {
+  color: var(--auth-accent); /* Use accent for the action link */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.auth-switch-link a:hover {
+  color: var(--auth-accent-hover);
+  text-decoration: underline;
+}
+
+/* --- Error Message Styling --- */
+.error-msg {
+  background-color: var(--auth-error-bg);
+  color: var(--auth-error-color);
+  border: 1px solid rgba(255, 138, 128, 0.3);
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 15px; /* Space above message */
+  margin-bottom: 5px; /* Space below message before button */
+  width: 100%;
+  box-sizing: border-box;
+}

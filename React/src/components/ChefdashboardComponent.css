@@ -1,0 +1,793 @@
+/* ChefdashboardComponent.css - Navbar Layout & Styling - WITH Recipe Card Structure */ /* Comment indicating the file name and its general purpose */
+
+/* --- Variables --- */ /* Section heading for CSS custom properties (variables) */
+:root { /* Pseudo-class selector targeting the root element (usually <html>) to define global variables */
+    /* Base & Layout */ /* Comment grouping variables related to base styles and layout */
+    --chef-font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Defines the primary font family for the chef dashboard */
+    --chef-content-bg: #f8f9fa; /* Defines the background color for the main content area */
+    --chef-border-radius: 8px; /* Defines a standard border radius for elements like cards and inputs */
+    --chef-transition-speed: 0.2s; /* Defines a standard duration for CSS transitions */
+    --chef-card-shadow: 0 3px 8px rgba(52, 58, 64, 0.07); /* Defines a subtle box shadow for card elements */
+    --chef-card-hover-shadow: 0 6px 12px rgba(52, 58, 64, 0.1); /* Defines a more prominent shadow for cards on hover */
+  
+    /* Navbar */ /* Comment grouping variables related to the navigation bar */
+    --chef-navbar-height: 65px; /* Defines the height of the navigation bar */
+    --chef-navbar-bg: #ffffff; /* Defines the background color of the navigation bar */
+    --chef-navbar-border: #6c757d;    /* UPDATED: Defines the color for the bottom border of the navbar (darker grey) */
+    --chef-navbar-text: #000000;       /* UPDATED: Defines the default text color within the navbar (black) */
+    --chef-navbar-text-hover: #000000; /* UPDATED: Defines the text color for navbar items on hover (black, hover effect via background) */
+    --chef-navbar-accent: #20c997;    /* Defines the accent color (teal) used for active items or highlights in the navbar */
+    --chef-navbar-brand-color: #000000;/* UPDATED: Defines the color for the navbar brand/logo text (black) */
+    --chef-navbar-active-bg: rgba(32, 201, 151, 0.08); /* Defines the background color for the active navigation item (light teal) */
+    --chef-navbar-logout-color: #dc3545; /* Defines the text color for the logout button (Bootstrap red) */
+    --chef-navbar-logout-hover-bg: rgba(220, 53, 69, 0.07); /* Defines the background color for the logout button on hover (light red) */
+    --chef-navbar-logout-hover-color: #b02a37; /* Defines the text color for the logout button on hover (darker red) */
+    --chef-avatar-size: 38px; /* Defines the size (width and height) of the user avatar in the navbar */
+  
+    /* Cards & Content Text */ /* Comment grouping variables related to card styling and general text */
+    --chef-card-bg: #ffffff; /* Defines the background color for card elements */
+    --chef-text-primary: #000000;      /* UPDATED: Defines the primary text color for content (black) */
+    --chef-text-secondary: #333333;    /* UPDATED: Defines the secondary text color for less prominent text (dark grey) */
+    --chef-border-color: #6c757d;      /* UPDATED: Defines a general border color for elements (darker grey) */
+    --chef-placeholder-bg-light: #f1f3f5; /* Defines a light background color for placeholder elements */
+  
+    /* Buttons */ /* Comment grouping variables related to button styling */
+    --chef-button-edit-bg: #20c997;   /* Defines the background color for edit buttons (teal) */
+    --chef-button-edit-hover-bg: #1baa80; /* Defines the background color for edit buttons on hover (darker teal) */
+    --chef-button-delete-bg: #dc3545; /* Defines the background color for delete buttons (red) */
+    --chef-button-delete-hover-bg: #c82333; /* Defines the background color for delete buttons on hover (darker red) */
+    --chef-button-submit-bg: #0d6efd; /* Defines the background color for submit buttons (blue) */
+    --chef-button-submit-hover-bg: #0b5ed7; /* Defines the background color for submit buttons on hover (darker blue) */
+    --chef-button-cancel-bg: #6c757d; /* Defines the background color for cancel buttons (grey) */
+    --chef-button-cancel-hover-bg: #5a6268; /* Defines the background color for cancel buttons on hover (darker grey) */
+    --chef-button-view-bg: #0dcaf0;   /* Defines the background color for view buttons (cyan) */
+    --chef-button-view-hover-bg: #0baccc; /* Defines the background color for view buttons on hover (darker cyan) */
+    --chef-button-text: #ffffff;      /* Defines the text color for most buttons (white) */
+    --chef-button-back-bg: #f8f9fa; /* Defines the background color for back buttons */
+    --chef-button-back-text: var(--chef-text-secondary); /* UPDATED: Defines the text color for back buttons (using dark grey variable) */
+    --chef-button-back-hover-bg: #e9ecef; /* Defines the background color for back buttons on hover */
+  
+    /* Stars */ /* Comment grouping variables related to star rating styling */
+    --chef-star-filled: #ffc107;   /* Defines the color for filled rating stars (Bootstrap yellow) */
+    --chef-star-empty: #aaaaaa;    /* UPDATED: Defines the color for empty rating stars (darker grey) */
+  } /* Closing brace for the :root selector block */
+  
+  /* --- Global Styles --- */ /* Section heading for global element styling */
+  body { /* Selector targeting the <body> element */
+      font-family: var(--chef-font-family); /* Sets the default font for the entire page using the defined variable */
+      margin: 0; /* Removes default browser margin from the body */
+      background-color: var(--chef-content-bg); /* Sets the background color for the page using the defined variable */
+      color: var(--chef-text-primary); /* Sets the base text color for the page (black) using the defined variable */
+      line-height: 1.6; /* Sets the default line height for text */
+  } /* Closing brace for the body selector block */
+  
+  /* --- Navbar --- */ /* Section heading for navigation bar styling */
+  .chef-dashboard-navbar { /* Selector targeting the main navbar container */
+      height: var(--chef-navbar-height); /* Sets the height of the navbar using the variable */
+      background-color: var(--chef-navbar-bg); /* Sets the navbar background color using the variable */
+      padding: 0 25px; /* Adds horizontal padding inside the navbar */
+      display: flex; /* Enables flexbox layout for the navbar */
+      align-items: center; /* Vertically aligns flex items (brand, actions) in the center */
+      justify-content: space-between; /* Puts space between the brand (left) and actions (right) */
+      border-bottom: 1px solid var(--chef-navbar-border); /* Adds a bottom border using the updated border color variable */
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06); /* Adds a subtle shadow below the navbar */
+      position: sticky; /* Makes the navbar stick to the top when scrolling */
+      top: 0; /* Specifies the sticky position at the top */
+      left: 0; /* Specifies the sticky position starting from the left edge */
+      width: 100%; /* Makes the navbar span the full width of the viewport */
+      z-index: 1010; /* Ensures the navbar stays above most other content */
+      box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+  } /* Closing brace for the .chef-dashboard-navbar selector block */
+  .chef-dashboard-navbar .navbar-brand a { /* Selector targeting the anchor tag within the navbar brand */
+      font-size: 1.5rem; /* Sets the font size for the brand text */
+      font-weight: 700; /* Makes the brand text bold */
+      color: var(--chef-navbar-brand-color); /* Sets the brand text color using the updated variable (black) */
+      text-decoration: none; /* Removes the default underline from the link */
+      transition: opacity 0.2s ease; /* Adds a smooth transition for opacity changes (on hover) */
+      display: flex; /* Enables flexbox layout within the brand link (if an icon is used) */
+      align-items: center; /* Vertically aligns items within the brand link */
+  } /* Closing brace for the navbar brand link selector block */
+  .chef-dashboard-navbar .navbar-brand a:hover { opacity: 0.8; } /* Styles the brand link on hover, reducing opacity slightly */
+  .chef-dashboard-navbar .navbar-actions { display: flex; align-items: center; gap: 10px; } /* Styles the container for navbar actions (buttons, avatar): enables flexbox, centers items vertically, adds space between items */
+  .chef-dashboard-navbar .navbar-button { /* Selector targeting buttons within the navbar actions */
+      background-color: transparent; /* Sets a transparent background initially */
+      border: none; /* Removes any default button border */
+      padding: 8px 16px; /* Adds padding inside the button */
+      border-radius: 6px; /* Applies rounded corners to the button */
+      cursor: pointer; /* Changes the cursor to a pointer on hover */
+      font-size: 0.9rem; /* Sets the font size for the button text */
+      font-weight: 500; /* Sets the font weight for the button text */
+      color: var(--chef-navbar-text); /* Sets the button text color using the updated variable (black) */
+      transition: background-color var(--chef-transition-speed) ease, color var(--chef-transition-speed) ease; /* Adds smooth transitions for background and text color changes */
+      text-decoration: none; /* Removes underline if the button is an anchor tag */
+      display: inline-flex; /* Makes the button behave like an inline element but allows flex properties */
+      align-items: center; /* Vertically aligns content (text, icons) within the button */
+      position: relative; /* Sets positioning context for potential pseudo-elements (like the bottom border) */
+      white-space: nowrap; /* Prevents button text from wrapping to the next line */
+      border-bottom: 3px solid transparent; /* Adds a transparent bottom border, reserving space for the active state */
+      margin-bottom: -1px; /* Adjusts margin slightly to align the bottom border with the navbar's border */
+  } /* Closing brace for the .navbar-button selector block */
+  .chef-dashboard-navbar .navbar-button:hover:not(.active) { /* Selector targeting navbar buttons on hover, excluding the active one */
+      /* Color doesn't change on hover anymore */ /* Comment explaining the hover effect change */
+      background-color: #f8f9fa; /* Sets a light background color on hover */
+  } /* Closing brace for the non-active hover style */
+  .chef-dashboard-navbar .navbar-button.active { /* Selector targeting the active navbar button */
+      color: var(--chef-navbar-accent); /* Sets the text color to the accent color (teal) */
+      font-weight: 600; /* Makes the text slightly bolder */
+      background-color: var(--chef-navbar-active-bg); /* Sets the background to the light teal active color */
+      border-bottom-color: var(--chef-navbar-accent); /* Makes the bottom border visible using the accent color */
+  } /* Closing brace for the active button style */
+  .chef-dashboard-navbar .navbar-button.logout-button { /* Selector targeting the specific logout button */
+      color: var(--chef-navbar-logout-color); /* Sets the text color to red */
+      border-bottom-color: transparent !important; /* Ensures the bottom border remains transparent, overriding active styles if applied */
+      background-color: transparent !important; /* Ensures the background remains transparent, overriding active styles if applied */
+  } /* Closing brace for the logout button base style */
+  .chef-dashboard-navbar .navbar-button.logout-button:hover { /* Selector targeting the logout button on hover */
+      background-color: var(--chef-navbar-logout-hover-bg); /* Sets the light red background on hover */
+      color: var(--chef-navbar-logout-hover-color); /* Sets the darker red text color on hover */
+  } /* Closing brace for the logout button hover style */
+  .chef-dashboard-navbar .navbar-button:focus-visible { /* Styles for when a button receives focus via keyboard navigation */
+      outline: 2px solid var(--chef-navbar-accent); /* Adds a visible outline using the accent color */
+      outline-offset: 2px; /* Adds space between the button and the outline */
+      box-shadow: none; /* Removes any default browser focus shadow */
+  } /* Closing brace for the focus-visible style */
+  
+  /* Navbar Profile Avatar */ /* Comment indicating styles for the profile avatar */
+  .navbar-profile-avatar { /* Selector targeting the avatar container in the navbar */
+      width: var(--chef-avatar-size); height: var(--chef-avatar-size); /* Sets the width and height using the variable */
+      border-radius: 50%; overflow: hidden; margin-left: 15px; /* Makes it circular, hides overflow, adds left margin */
+      border: 2px solid var(--chef-navbar-border); cursor: pointer; /* Adds a border using the updated variable, sets pointer cursor */
+      background-color: #e9ecef; display: flex; align-items: center; justify-content: center; /* Sets fallback background, enables flex centering for initial/placeholder */
+      transition: box-shadow 0.2s ease; /* Adds transition for the hover shadow effect */
+  } /* Closing brace for the avatar container style */
+  .navbar-profile-avatar:hover { box-shadow: 0 0 0 3px var(--chef-navbar-active-bg); } /* Adds an outer shadow effect on hover using the active background color variable */
+  .navbar-profile-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; } /* Styles the image within the avatar: makes it fill the container, cover aspect ratio, display as block */
+  .navbar-profile-avatar span { /* Styles the span element used for initials/placeholder within the avatar */
+      font-weight: 600; /* Makes the text bold */
+      color: var(--chef-text-secondary); /* Sets the text color using the secondary text variable (dark grey) */
+      font-size: 1rem; /* Sets the font size for the initials */
+  } /* Closing brace for the avatar span style */
+  
+  /* --- Dashboard Content Area --- */ /* Section heading for the main content area below the navbar */
+  .chef-dashboard-content { /* Selector targeting the main content wrapper */
+      padding: 35px 45px; /* Adds padding inside the content area */
+      background-color: var(--chef-content-bg); /* Sets the background color using the variable */
+      min-height: calc(100vh - var(--chef-navbar-height)); /* Ensures content area fills at least the remaining viewport height */
+  } /* Closing brace for the content area style */
+  .chef-dashboard-content h2, .chef-dashboard-content h3 { /* Selector targeting h2 and h3 headings within the content */
+      font-size: 1.6rem; /* Sets the font size for these headings */
+      color: var(--chef-text-primary); /* Sets the text color using the primary variable (black) */
+      margin-top: 0; margin-bottom: 25px; font-weight: 600; /* Sets margins and makes the text bold */
+      border-bottom: none; padding-bottom: 5px; /* Removes default bottom border, adds slight padding below */
+  } /* Closing brace for h2/h3 style */
+  .chef-dashboard-content h3 { font-size: 1.5rem; } /* Overrides h3 font size to be slightly smaller than h2 */
+  .content-title { /* Selector for a specific type of title within the content */
+      font-size: 1.6rem; /* Sets the font size */
+      color: var(--chef-text-primary); /* Sets the text color (black) */
+      margin-bottom: 25px; font-weight: 600; padding-bottom: 10px; /* Sets margin, weight, and bottom padding */
+      border-bottom: 1px solid var(--chef-border-color); /* Adds a bottom border using the updated variable */
+  } /* Closing brace for content-title style */
+  .loading-message { /* Selector for styling loading indicators */
+      text-align: center; /* Centers the text */
+      color: var(--chef-text-secondary); /* Sets the text color to secondary (dark grey) */
+      margin-top: 40px; font-size: 1rem; font-style: italic; /* Sets top margin, font size, and italic style */
+  } /* Closing brace for loading message style */
+  .info-message { /* Selector for informational messages */
+      color: var(--chef-text-secondary); /* Sets text color to secondary (dark grey) */
+      font-size: 1rem; text-align: center; margin-top: 40px; padding: 20px; /* Sets font size, alignment, margin, padding */
+      background-color: #fff; border-radius: var(--chef-border-radius); /* Sets white background, applies standard border radius */
+      border: 1px dashed var(--chef-border-color); /* Adds a dashed border using the updated variable */
+  } /* Closing brace for info message style */
+  .error-message { /* Selector for error message boxes */
+      text-align: center; color: #c62828; /* Centers text, sets text color to a dark red */
+      background-color: #ffcdd2; border: 1px solid #e57373; /* Sets light red background, adds red border */
+      padding: 10px 15px; border-radius: var(--chef-border-radius); /* Adds padding, applies standard border radius */
+      margin: 20px auto; max-width: 700px; font-weight: 500; /* Sets vertical margin, centers horizontally, limits width, sets font weight */
+  } /* Closing brace for error message box style */
+  .error-message.info-subtle { /* Selector for a more subtle variation of the error message */
+      background-color: transparent; border: none; padding: 5px 0; /* Makes background transparent, removes border, adjusts padding */
+      color: var(--chef-navbar-logout-color); /* Sets text color to red using the variable */
+      font-size: 0.9rem; font-style: italic; max-width: 100%; /* Adjusts font size, style, removes max-width constraint */
+      text-align: left; margin-top: -15px; margin-bottom: 20px; /* Aligns text left, adjusts vertical margins */
+  } /* Closing brace for subtle error message style */
+  .stat-error { display: inline-block; margin-left: 5px; color: var(--chef-navbar-logout-color); font-size: 0.75rem; font-weight: bold; vertical-align: text-top; } /* Styles small error indicators next to stats: inline display, margin, red color, small size, bold, aligns to top */
+  
+  /* ==== Chef Home Section ==== */ /* Section heading for styles specific to the Chef Home/Overview page */
+  .chef-home-overview { padding: 10px 0; } /* Adds vertical padding to the overview container */
+  .chef-home-overview h3 { margin-top: 0; } /* Removes top margin from h3 headings in the overview */
+  .chef-home-overview p { /* Styles paragraphs within the overview */
+      margin-bottom: 15px; /* Adds bottom margin */
+      color: var(--chef-text-secondary); /* Sets text color to secondary (dark grey) */
+      font-size: 1rem; /* Sets font size */
+  } /* Closing brace for overview paragraph style */
+  .chef-quick-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 25px; margin: 35px 0; } /* Styles the container for quick statistic cards: uses grid layout, creates responsive columns, adds gap, sets vertical margin */
+  .stat-card { /* Styles individual statistic cards */
+      background-color: var(--chef-card-bg); padding: 25px 20px; border-radius: 10px; /* Sets background, padding, slightly larger radius */
+      text-align: center; box-shadow: var(--chef-card-shadow); /* Centers text, applies standard card shadow */
+      border: 1px solid var(--chef-border-color); /* Adds border using the updated variable */
+      border-top: 4px solid var(--chef-navbar-accent); /* Adds a thicker accent border at the top */
+      transition: transform 0.2s ease, box-shadow 0.2s ease; /* Adds transitions for hover effects */
+  } /* Closing brace for stat card style */
+  .stat-card:hover { transform: translateY(-5px); box-shadow: var(--chef-card-hover-shadow); } /* Adds a lift and stronger shadow effect on hover */
+  .stat-number { /* Styles the large number within a stat card */
+      display: block; font-size: 2.4rem; font-weight: 700; /* Makes it a block element, large font size, bold */
+      color: var(--chef-navbar-accent); /* Sets color to the accent teal */
+      margin-bottom: 8px; line-height: 1.1; /* Adds bottom margin, adjusts line height */
+  } /* Closing brace for stat number style */
+  .stat-label { /* Styles the label text within a stat card */
+      font-size: 0.9rem; /* Sets font size */
+      color: var(--chef-text-secondary); /* Sets color to secondary (dark grey) */
+      text-transform: uppercase; letter-spacing: 0.5px; font-weight: 500; /* Makes text uppercase, adds letter spacing, sets font weight */
+  } /* Closing brace for stat label style */
+  .stat-card.placeholder .stat-number { color: #ccc; font-size: 1.8rem;} /* Styles the number in placeholder state: grey color, smaller size */
+  
+  /* --- Recipe Lists (General for both My and All) --- */ /* Section heading for recipe list containers */
+  .recipe-list { display: grid; gap: 30px; margin-top: 25px; } /* General styles for recipe lists: uses grid layout, sets gap between items, adds top margin */
+  .recipe-list.my-recipes-list { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); } /* Specific grid layout for 'My Recipes': responsive columns with a minimum width */
+  .recipe-list.view-all-list { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); } /* Specific grid layout for 'View All Recipes': slightly smaller minimum width */
+  
+  
+  /* ==== UPDATED Recipe Card Structure Styles ==== */ /* Section heading indicating updated styles for recipe cards */
+  .recipe-card { /* Styles the main container for a single recipe card */
+      background-color: var(--chef-card-bg); border-radius: 10px; /* Sets background color, applies larger border radius */
+      border: 1px solid var(--chef-border-color); /* Adds border using the updated variable */
+      box-shadow: var(--chef-card-shadow); display: flex; flex-direction: row; /* Applies shadow, uses flexbox for side-by-side layout (image | text) */
+      overflow: hidden; padding: 0; gap: 0; /* Hides overflowing content, removes internal padding (added to inner containers), removes gap */
+      transition: transform var(--chef-transition-speed) ease, box-shadow var(--chef-transition-speed) ease; /* Adds transitions for hover effects */
+      height: 100%; /* Ensures cards in the same grid row stretch to the same height */
+  } /* Closing brace for recipe card style */
+  .recipe-card:hover { transform: translateY(-5px); box-shadow: var(--chef-card-hover-shadow); } /* Adds lift and stronger shadow on hover */
+  
+  /* Image Container */ /* Comment indicating styles for the image part of the card */
+  .recipe-image-container { /* Styles the container holding the recipe image */
+      flex-basis: 38%; flex-shrink: 0; position: relative; /* Sets initial width percentage, prevents shrinking, sets positioning context */
+      background-color: var(--chef-placeholder-bg-light); /* Sets background color for loading/placeholder state */
+      min-height: 150px; align-self: stretch; /* Sets minimum height, stretches vertically to match content height */
+  } /* Closing brace for image container style */
+  .recipe-image-container .recipe-image { width: 100%; height: 100%; object-fit: cover; display: block; } /* Styles the actual image: fills container, covers aspect ratio, displays as block */
+  .recipe-image-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--chef-text-secondary); /* Styles the placeholder text/icon: fills container, centers content, sets text color (secondary) */ font-style: italic; padding: 10px; font-size: 0.9rem; text-align: center;} /* Sets italic style, adds padding, font size, centers text */
+  
+  /* Content Container */ /* Comment indicating styles for the text content part of the card */
+  .recipe-content-container { /* Styles the container holding the recipe text details */
+      flex-basis: 62%; padding: 20px; display: flex; flex-direction: column; /* Sets remaining width percentage, adds padding, uses flexbox for vertical layout */
+      justify-content: flex-start; /* Aligns content (title, description, etc.) to the top */
+  } /* Closing brace for content container style */
+  .recipe-content-container h4 { /* Styles the recipe title (h4) within the card */
+      font-size: 1.1rem; font-weight: 600; /* Sets font size and weight */
+      color: var(--chef-text-primary); /* Sets text color (black) */
+      margin: 0 0 10px 0; /* Removes top margin, adds bottom margin */
+  } /* Closing brace for recipe title style */
+  .recipe-content-container p { /* Styles paragraphs (description, details) within the card */
+      font-size: 0.9rem; /* Sets font size */
+      color: var(--chef-text-secondary); /* Sets text color (dark grey) */
+      margin: 4px 0; line-height: 1.5; word-break: break-word; /* Sets vertical margin, line height, allows long words to break */
+  } /* Closing brace for paragraph style */
+  .recipe-content-container p strong, /* Selects strong elements within paragraphs */
+  .recipe-content-container .detail-label { /* Selects elements with the class 'detail-label' for consistent styling */
+      font-weight: 600; /* Makes the label text bold */
+      color: var(--chef-text-primary); /* Sets label text color (black) */
+      margin-right: 6px; /* Adds spacing after the label */
+  } /* Closing brace for label styling */
+  
+  
+  /* ---- Rating Section Improvements ---- */ /* Section heading for improved rating styles */
+  .rating-section { /* Styles the container for the star rating */
+      margin-top: 8px; /* Increased spacing above the rating */
+      display: flex; /* Uses flexbox to align label and stars */
+      align-items: center; /* Vertically centers items in the flex container */
+      gap: 8px; /* Adds space between the label and the stars/text */
+      color: var(--chef-text-secondary); /* Sets default text color for the section (dark grey) */
+      font-size: 0.9rem; /* Sets base font size for the rating text */
+  } /* Closing brace for rating section style */
+  .rating-section .detail-label { /* Selects labels specifically within the rating section */
+      margin-right: 0; /* Removes the default margin applied by the general '.detail-label' rule */
+  } /* Closing brace for rating label style */
+  .star-rating-display { /* Styles the container specifically holding the stars */
+      line-height: 1; /* Prevents extra vertical space around the stars */
+  } /* Closing brace for star display container style */
+  .star { /* Styles individual star icons */
+      font-size: 1.15rem; /* UPDATED: Makes stars slightly larger */
+      color: var(--chef-star-empty); /* Sets the color for empty stars (darker grey) */
+      margin-right: 1px; /* Adds a tiny space between adjacent stars */
+  } /* Closing brace for individual star style */
+  .star.filled { color: var(--chef-star-filled); /* Keep filled color */ } /* Styles filled stars using the yellow variable */
+  .rating-section span:not(.detail-label):not(.star) { /* Styles the text part of the rating (e.g., "(3.0/5)"), excluding labels and stars */
+      font-weight: 500; /* UPDATED: Makes the rating text slightly bolder */
+      color: var(--chef-text-secondary); /* Sets text color (dark grey) */
+      margin-left: 5px; /* Adds space between the stars and this text */
+      font-size: 0.85rem; /* Makes the text slightly smaller than the base size */
+  } /* Closing brace for rating text style */
+  /* ---- End Rating Section ---- */ /* Comment indicating the end of the rating section styles */
+  
+  /* Actions at the bottom */ /* Comment indicating styles for the action buttons within the card */
+  .recipe-actions { /* Styles the container for action buttons (Edit, Delete) */
+      margin-top: auto; padding-top: 15px; /* Pushes buttons to the bottom, adds padding above */
+      border-top: 1px solid var(--chef-border-color); /* Adds a separator line using the updated border color */
+      display: flex; gap: 10px; align-self: flex-start; /* Uses flexbox, adds space between buttons, aligns container to the start (left) */
+  } /* Closing brace for recipe actions container style */
+  .recipe-actions button { border: none; padding: 7px 16px; font-size: 0.8rem; font-weight: 600; cursor: pointer; border-radius: 6px; transition: background-color 0.2s ease; color: white; text-transform: uppercase; letter-spacing: 0.5px; } /* General styles for buttons within actions: no border, padding, small font, bold, pointer cursor, rounded corners, transition, white text, uppercase, letter spacing */
+  .recipe-actions .button-edit { background-color: var(--chef-button-edit-bg); } /* Sets background color for edit button using teal variable */
+  .recipe-actions .button-edit:hover { background-color: var(--chef-button-edit-hover-bg); } /* Sets hover background color for edit button */
+  .recipe-actions .button-delete { background-color: var(--chef-button-delete-bg); } /* Sets background color for delete button using red variable */
+  .recipe-actions .button-delete:hover { background-color: var(--chef-button-delete-hover-bg); } /* Sets hover background color for delete button */
+  
+  /* View Only Cards Specific Tweaks */ /* Comment indicating potential tweaks for view-only cards */
+  /* Already inherits new text colors */ /* Comment noting that text colors are handled by existing rules */
+  
+  /* --- Forms Styling --- */ /* Section heading for form elements styling */
+  .form-container { /* Styles the main container for forms */
+      background-color: var(--chef-card-bg); padding: 35px 45px; /* Sets background, adds padding */
+      border-radius: var(--chef-border-radius); box-shadow: var(--chef-card-shadow); /* Applies border radius and shadow */
+      max-width: 700px; margin: 30px auto; /* Limits maximum width, centers the form horizontally with vertical margin */
+      border: 1px solid var(--chef-border-color); /* Adds a border using the updated variable */
+  } /* Closing brace for form container style */
+  .dashboard-form h3 { /* Styles h3 headings within dashboard forms */
+      color: var(--chef-navbar-accent); /* Sets text color to the accent teal */
+      margin-top: 0; margin-bottom: 30px; text-align: center; /* Sets margins, centers the text */
+      font-size: 1.4rem; font-weight: 600; /* Sets font size and weight */
+  } /* Closing brace for form h3 style */
+  .form-group { margin-bottom: 22px; } /* Adds bottom margin to group form elements (label + input) */
+  .form-group label { /* Styles labels within form groups */
+      display: block; margin-bottom: 8px; font-size: 0.9rem; /* Makes label a block element, adds bottom margin, sets font size */
+      color: var(--chef-text-secondary); /* Sets label text color (dark grey) */
+      font-weight: 500; /* Sets font weight */
+  } /* Closing brace for form label style */
+  .dashboard-form input[type="text"], /* Selects text inputs */
+  .dashboard-form input[type="email"], /* Selects email inputs */
+  .dashboard-form input[type="password"], /* Selects password inputs */
+  .dashboard-form textarea, /* Selects textareas */
+  .dashboard-form select { /* Selects dropdowns */
+      width: 100%; padding: 12px 16px; font-size: 0.95rem; /* Makes element full width, adds padding, sets font size */
+      border: 1px solid #AAAAAA; /* Sets a slightly darker border color */
+      background-color: #ffffff; /* Sets white background */
+      color: var(--chef-text-primary); /* Sets text color (black) */
+      border-radius: 6px; box-sizing: border-box; /* Applies rounded corners, ensures padding/border included in width */
+      transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Adds transitions for focus effects */
+  } /* Closing brace for common input/textarea/select styles */
+  .dashboard-form input:focus, .dashboard-form textarea:focus, .dashboard-form select:focus { /* Styles for when these form elements have focus */
+      outline: none; border-color: var(--chef-navbar-accent); /* Removes default outline, changes border color to accent teal */
+      box-shadow: 0 0 0 3px var(--chef-navbar-active-bg); /* Adds an outer glow effect using the light teal active background */
+  } /* Closing brace for focus styles */
+  .dashboard-form textarea { min-height: 100px; resize: vertical; line-height: 1.5; } /* Specific styles for textareas: minimum height, allows vertical resizing, sets line height */
+  .dashboard-form input[type="file"] { padding: 10px; background-color: #f8f9fa; border: 1px dashed #AAAAAA; cursor: pointer; } /* Styles file input: padding, light background, dashed border, pointer cursor */
+  .dashboard-form input[type="file"]::file-selector-button { background-color: var(--chef-navbar-accent); color: white; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer; margin-right: 15px; font-size: 0.85rem; font-weight: 500;} /* Styles the "Choose File" button within the file input: teal background, white text, no border, padding, rounded corners, pointer, right margin, font size/weight */
+  .form-note { /* Styles small note text within forms */
+      font-size: 0.8rem; /* Sets small font size */
+      color: var(--chef-text-secondary); /* Sets text color (dark grey) */
+      text-align: center; margin-top: -10px; margin-bottom: 15px; /* Centers text, adjusts vertical margins */
+  } /* Closing brace for form note style */
+  .form-actions { display: flex; gap: 15px; margin-top: 25px; } /* Styles the container for form action buttons: uses flexbox, adds gap between buttons, adds top margin */
+  .form-button { flex-grow: 1; padding: 12px 20px; font-size: 1rem; border: none; border-radius: 6px; color: white; cursor: pointer; font-weight: 600; transition: background-color 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px;} /* General styles for form buttons: allows button to grow, padding, font size, no border, rounded corners, white text, pointer, bold, transition, uppercase, letter spacing */
+  .form-button[type="submit"] { background-color: var(--chef-button-submit-bg); } /* Sets background for submit button (blue) */
+  .form-button[type="submit"]:hover { background-color: var(--chef-button-submit-hover-bg); } /* Sets hover background for submit button */
+  .cancel-button { background-color: var(--chef-button-cancel-bg); } /* Sets background for cancel button (grey) */
+  .cancel-button:hover { background-color: var(--chef-button-cancel-hover-bg); } /* Sets hover background for cancel button */
+  .profile-upload-section-form { /* Styles a specific section within a form for profile uploads */
+      margin-top: 30px; padding-top: 25px; /* Adds top margin and padding */
+      border-top: 1px solid var(--chef-border-color); /* Adds a separator line using the updated border color */
+  } /* Closing brace for profile upload section style */
+  .profile-upload-section-form h4 { /* Styles h4 headings within the upload section */
+      font-size: 1.1rem; /* Sets font size */
+      color: var(--chef-text-primary); /* Sets text color (black) */
+      margin-bottom: 20px; font-weight: 600; /* Adds bottom margin, makes text bold */
+  } /* Closing brace for upload section h4 style */
+  .profile-upload-section-form .profile-upload-button { background-color: var(--chef-button-edit-bg); color: #fff; padding: 10px 20px; font-size: 0.9rem;} /* Styles the upload button: teal background, white text, padding, font size */
+  .profile-upload-section-form .profile-upload-button:hover { background-color: var(--chef-button-edit-hover-bg); } /* Sets hover background for upload button */
+  .profile-upload-section-form .profile-upload-button:disabled { background-color: #ccc; cursor: not-allowed; } /* Styles the disabled state of the upload button: grey background, not-allowed cursor */
+  .current-profile-image-preview { /* Styles the preview of the current profile image */
+      display: block; width: 100px; height: 100px; border-radius: 50%; /* Makes it block, sets size, makes it circular */
+      margin: 15px auto 0 auto; /* Adds top margin, centers horizontally */
+      border: 2px solid var(--chef-border-color); /* Adds a border using the updated variable */
+      object-fit: cover; /* Ensures the image covers the area nicely */
+  } /* Closing brace for profile image preview style */
+  
+  /* --- Recipe Detail View Specific --- */ /* Section heading for styles specific to the detailed recipe view */
+  .recipe-detail-view { /* Styles the main container for the recipe detail */
+      background-color: var(--chef-card-bg); /* Sets background color */
+      padding: 30px 40px; /* Adds padding */
+      border-radius: var(--chef-border-radius); /* Applies standard border radius */
+      box-shadow: var(--chef-card-shadow); /* Applies standard card shadow */
+      margin: 20px 0; /* Adds vertical margin */
+  } /* Closing brace for recipe detail view container style */
+  .recipe-detail-view .button-back { /* Styles the 'Back' button in the detail view */
+      background-color: var(--chef-button-back-bg); /* Sets background using variable */
+      color: var(--chef-button-back-text); /* Sets text color using variable (dark grey) */
+      border: 1px solid var(--chef-border-color); /* Adds border using variable */
+      padding: 8px 15px; border-radius: 6px; cursor: pointer; margin-bottom: 25px; /* Adds padding, radius, pointer cursor, bottom margin */
+      font-size: 0.9rem; transition: background-color 0.2s ease; /* Sets font size, adds transition */
+  } /* Closing brace for back button style */
+  .recipe-detail-view .button-back:hover { background-color: var(--chef-button-back-hover-bg); } /* Sets hover background for back button */
+  .recipe-detail-view h3 { /* Styles the main title (e.g., "Recipe Details") */
+      text-align: center; font-size: 1.5rem; /* Centers text, sets font size */
+      color: var(--chef-navbar-accent); /* Sets color to accent teal */
+      margin-bottom: 30px; /* Adds bottom margin */
+  } /* Closing brace for detail view h3 style */
+  .recipe-detail-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 15px; border-bottom: 1px solid var(--chef-border-color); padding-bottom: 10px;} /* Styles the header section containing title and maybe creation date: flex layout, space between items, aligns baselines, adds bottom margin/border/padding */
+  .recipe-detail-header h4 { /* Styles the recipe title within the detail header */
+      font-size: 1.4rem; margin: 0; font-weight: 600; /* Sets font size, removes margin, makes text bold */
+      color: var(--chef-text-primary); /* Sets text color (black) */
+  } /* Closing brace for detail header h4 style */
+  .recipe-detail-header span { font-size: 0.8rem; color: var(--chef-text-secondary); } /* Styles secondary text (like date) in the header: small font, secondary color */
+  .recipe-detail-body { display: flex; gap: 30px; margin-top: 20px; flex-wrap: wrap;} /* Styles the main body containing image and text details: flex layout, adds gap, top margin, allows wrapping */
+  .recipe-detail-image { width: 250px; height: 250px; object-fit: cover; border-radius: var(--chef-border-radius); align-self: flex-start; flex-shrink: 0; border: 1px solid var(--chef-border-color); } /* Styles the image in the detail view: fixed size, cover aspect ratio, rounded corners, aligns to top, prevents shrinking, adds border */
+  .recipe-detail-text { flex: 1; min-width: 250px; } /* Styles the text container next to the image: takes remaining space, sets minimum width */
+  .recipe-detail-text p { margin-bottom: 10px; font-size: 0.95rem; line-height: 1.6; color: var(--chef-text-secondary); } /* Styles paragraphs in the text details: bottom margin, font size, line height, secondary color */
+  .recipe-detail-text p strong { color: var(--chef-text-primary); } /* Styles strong tags (labels) within the text: makes them black */
+  .recipe-detail-text .rating-section { /* Specific styling for the rating section within the detail view */
+      font-weight: 500; /* Makes the rating text slightly bolder */
+      font-size: 1rem;   /* Makes the rating text slightly larger */
+  } /* Closing brace for detail view rating section style */
+  .recipe-detail-text .rating-section .star { /* Styles stars within the detail view rating section */
+       font-size: 1.2rem; /* Makes stars slightly larger in the detail view */
+  } /* Closing brace for detail view star style */
+  .recipe-detail-section { margin-top: 20px; } /* Adds top margin to distinct sections like 'Ingredients' or 'Instructions' */
+  .recipe-detail-section h5 { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; color: var(--chef-text-primary);} /* Styles subsection titles (h5): font size/weight, bottom margin/border/padding, black color */
+  .recipe-detail-section .recipe-detail-preformatted { white-space: pre-wrap; word-wrap: break-word; background-color: #fdfdfd; padding: 15px; border-radius: 4px; border: 1px solid #f0f0f0; font-size: 0.9rem; line-height: 1.6; color: var(--chef-text-secondary); /* Styles preformatted text blocks (ingredients/instructions): preserves whitespace/line breaks, allows word wrapping, light background, padding, radius, border, font size, line height, dark grey text */}
+  
+  
+  /* --- Responsive Adjustments --- */ /* Section heading for media queries and responsive design */
+  @media (max-width: 992px) { /* Styles applied when screen width is 992px or less */
+    /* (Keep existing responsive rules - colors will inherit) */ /* Comment indicating inheritance */
+     .chef-dashboard-content { padding: 25px; } /* Reduces content padding */
+    .recipe-list.my-recipes-list, .recipe-list.view-all-list { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; } /* Adjusts recipe list grid for smaller columns, reduces gap */
+    .chef-quick-stats { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } /* Adjusts stats grid for smaller columns */
+    .form-container { max-width: 90%; padding: 30px; } /* Makes form container slightly wider relative to screen, reduces padding */
+     /* Recipe Card stack */ /* Comment indicating card layout change */
+     .recipe-card { flex-direction: column; } /* Stacks recipe card image and content vertically */
+     .recipe-image-container { flex-basis: auto; min-height: 180px; max-height: 200px; align-self: auto;} /* Resets flex basis for image, adjusts height, resets alignment */
+     .recipe-content-container { flex-basis: auto; } /* Resets flex basis for content */
+     .recipe-actions { align-self: stretch; justify-content: space-between;} /* Makes actions container full width, spaces buttons */
+  } /* Closing brace for max-width 992px media query */
+  
+  @media (max-width: 768px) { /* Styles applied when screen width is 768px or less */
+    /* (Keep existing responsive rules - colors will inherit) */ /* Comment indicating inheritance */
+    .chef-dashboard-navbar { height: auto; flex-direction: column; align-items: stretch; padding: 0; } /* Makes navbar height automatic, stacks items vertically, stretches items, removes padding */
+    .chef-dashboard-navbar .navbar-brand { padding: 12px 15px; border-bottom: 1px solid var(--chef-navbar-border); width: 100%; box-sizing: border-box; text-align: center;} /* Adds padding to brand, adds border, makes full width, includes padding in width, centers text */
+    .chef-dashboard-navbar .navbar-actions { width: 100%; display: flex; flex-direction: column; align-items: stretch;} /* Makes actions container full width, stacks items vertically, stretches items */
+    .chef-dashboard-navbar .navbar-button { padding: 12px 15px; border-radius: 0; justify-content: center; border-bottom: 1px solid var(--chef-navbar-border); font-size: 0.95rem; border-left: 3px solid transparent; margin-bottom: 0;} /* Adjusts button padding, removes radius, centers text, adds bottom border, slightly larger font, adds transparent left border space, removes bottom margin */
+    .chef-dashboard-navbar .navbar-button::after { display: none;} /* Hides any potential pseudo-elements */
+    .chef-dashboard-navbar .navbar-button:last-child, .chef-dashboard-navbar .navbar-profile-avatar { border-bottom: none; } /* Removes bottom border from the last button and avatar */
+    .chef-dashboard-navbar .navbar-button.active { border-left-color: var(--chef-navbar-accent); background-color: var(--chef-navbar-active-bg); color: var(--chef-navbar-accent); border-bottom-color: var(--chef-navbar-border);} /* Styles active button: shows left border in accent color, sets background/text color, resets bottom border color */
+     /* Navbar Avatar on mobile */ /* Comment indicating mobile avatar styles */
+     .navbar-profile-avatar { margin: 10px auto; width: calc(var(--chef-avatar-size) + 10px); height: calc(var(--chef-avatar-size) + 10px); } /* Centers avatar, makes it slightly larger */
+     .navbar-profile-avatar span { font-size: 1.4rem; color: var(--chef-text-secondary);} /* Increases font size for initials, sets color */
+  
+    .chef-dashboard-content { padding: 20px; } /* Further reduces content padding */
+    .chef-dashboard-content h2, .chef-dashboard-content h3, .content-title { font-size: 1.3rem; } /* Reduces heading font sizes */
+    .recipe-list.my-recipes-list, .recipe-list.view-all-list { grid-template-columns: 1fr; gap: 20px; } /* Forces recipe lists into a single column, reduces gap */
+    .form-container { padding: 25px; margin: 20px 15px; } /* Reduces form padding and margin */
+    .chef-quick-stats { grid-template-columns: 1fr; } /* Forces stats into a single column */
+    .recipe-detail-body { flex-direction: column; gap: 15px; } /* Stacks detail view image and text vertically, reduces gap */
+    .recipe-detail-image { width: 100%; height: 200px; } /* Makes detail image full width, sets fixed height */
+  } /* Closing brace for max-width 768px media query */
+  
+  @media (max-width: 480px) { /* Styles applied when screen width is 480px or less */
+    /* (Keep existing responsive rules - colors will inherit) */ /* Comment indicating inheritance */
+      .chef-dashboard-navbar .navbar-brand a { font-size: 1.3rem; } /* Reduces navbar brand font size */
+      .chef-dashboard-navbar .navbar-button { font-size: 0.9rem; padding: 10px 15px;} /* Reduces navbar button font size and padding */
+      .chef-dashboard-content { padding: 15px; } /* Further reduces content padding */
+      .chef-dashboard-content h2, .chef-dashboard-content h3, .content-title { font-size: 1.2rem; } /* Further reduces heading font sizes */
+      .recipe-card { border-radius: 8px; } /* Reduces recipe card border radius slightly */
+      .recipe-image-container { min-height: 160px; max-height: 180px;} /* Adjusts recipe card image height */
+      .recipe-content-container { padding: 15px; } /* Reduces padding inside recipe card content */
+      .recipe-content-container h4 { font-size: 1rem; } /* Reduces recipe card title font size */
+      .recipe-content-container p { font-size: 0.85rem; } /* Reduces recipe card paragraph font size */
+      .star { font-size: 1.05rem !important;} /* Overrides star size to be smaller */
+      .rating-section span:not(.detail-label):not(.star) { font-size: 0.8rem;} /* Overrides rating text size to be smaller */
+      .recipe-actions { padding-top: 10px; gap: 8px; } /* Reduces padding above actions, reduces gap */
+      .recipe-actions button { font-size: 0.75rem; padding: 6px 10px;} /* Reduces action button font size and padding */
+      .form-container { padding: 20px 15px; } /* Reduces form container padding */
+      .form-group label { font-size: 0.85rem; } /* Reduces form label font size */
+      .dashboard-form input, .dashboard-form textarea, .dashboard-form select { font-size: 0.9rem; padding: 10px 12px; } /* Reduces form input font size and padding */
+      .form-button { padding: 10px 15px; font-size: 0.9rem;} /* Reduces form button padding and font size */
+      .stat-number { font-size: 2.1rem;} /* Reduces stat card number font size */
+      .stat-label { font-size: 0.85rem; } /* Reduces stat card label font size */
+  } /* Closing brace for max-width 480px media query */
+  /* ChefdashboardComponent.css */ /* Comment indicating the file name */
+  
+  /* --- Variables --- */ /* Section heading for variables */
+  :root { /* Selector for root element */
+    /* ... (Keep all your existing variables) ... */ /* Comment indicating variables are defined above */
+    --chef-card-text-padding: 20px 25px; /* Defines padding specifically for the text container within recipe cards */
+  } /* Closing brace for :root */
+  
+  
+  /* ... (Keep Global Styles, Navbar Styles, Dashboard Content Styles, Chef Home Section, Forms, Detail View) ... */ /* Comment indicating other sections remain the same */
+  
+  
+  /* --- Recipe Lists (General for both My and All) --- */ /* Section heading for recipe list styles */
+  .recipe-list { /* Selector for the recipe list container */
+      display: grid; /* Uses CSS Grid layout */
+      gap: 30px; /* Sets the space between grid items (recipe cards) */
+      margin-top: 25px; /* Adds margin above the list */
+  } /* Closing brace for .recipe-list */
+  
+  /* --- UPDATED GRID LAYOUT for My Recipes List --- */ /* Section heading for 'My Recipes' list layout */
+  .recipe-list.my-recipes-list { /* Selector targeting the 'My Recipes' list variation */
+      /* Default to 2 columns on larger screens */ /* Comment explaining the layout */
+      grid-template-columns: repeat(2, 1fr); /* Creates a grid with 2 equal-width columns */
+  } /* Closing brace for .my-recipes-list */
+  
+  /* --- UPDATED GRID LAYOUT for View All Recipes List --- */ /* Section heading for 'View All' list layout */
+  .recipe-list.view-all-list { /* Selector targeting the 'View All' list variation */
+      /* Default to 2 columns on larger screens */ /* Comment explaining the layout */
+      grid-template-columns: repeat(2, 1fr); /* Creates a grid with 2 equal-width columns */
+  } /* Closing brace for .view-all-list */
+  
+  
+  /* ==== Recipe Card Structure Styles (Apply spacing improvements) ==== */ /* Section heading for recipe card structure */
+  .recipe-card { /* Selector for individual recipe cards */
+    /* ... (keep existing general .recipe-card styles) ... */ /* Comment indicating inheritance of previous styles */
+     background-color: var(--chef-card-bg); border-radius: 10px; /* Sets background color and border radius */
+     border: 1px solid var(--chef-border-color); box-shadow: var(--chef-card-shadow); /* Sets border and box shadow */
+     display: flex; flex-direction: row; /* Uses flexbox for side-by-side layout (image | text) */
+     overflow: hidden; padding: 0; gap: 0; /* Hides overflow, removes padding (applied internally), removes gap */
+     transition: transform var(--chef-transition-speed) ease, box-shadow var(--chef-transition-speed) ease; /* Adds hover transitions */
+     height: 100%; /* Allows consistent card heights in grid rows */
+  } /* Closing brace for .recipe-card */
+  .recipe-card:hover { transform: translateY(-5px); box-shadow: var(--chef-card-hover-shadow); } /* Styles card on hover: lifts up and increases shadow */
+  
+  /* Image Container */ /* Comment indicating styles for the image part of the card */
+  .recipe-image-container { /* Selector for the image container */
+     /* Maybe slightly larger basis % now that cards are wider */ /* Comment suggesting width adjustment */
+     flex-basis: 40%; /* Increased image area (sets initial width to 40%) */
+     flex-shrink: 0; position: relative; /* Prevents shrinking, establishes positioning context */
+     background-color: var(--chef-placeholder-bg-light); /* Sets placeholder background */
+     min-height: 150px; align-self: stretch; /* Sets minimum height, stretches vertically */
+  } /* Closing brace for .recipe-image-container */
+  /* ... (keep .recipe-image, .recipe-image-placeholder) ... */ /* Comment indicating related styles are kept */
+  
+  /* Content Container (with spacing fixes) */ /* Comment indicating styles for the text content area */
+  .recipe-content-container { /* Selector for the text content container */
+      flex-basis: 60%; /* Adjusted text area (sets initial width to 60%) */
+      padding: var(--chef-card-text-padding); /* Applies specific padding using the variable */
+      display: flex; flex-direction: column; /* Uses flexbox for vertical layout of text elements */
+      justify-content: flex-start; /* Aligns text content to the top */
+  } /* Closing brace for .recipe-content-container */
+  .recipe-content-container h4 { margin: 0 0 12px 0; font-size: 1.1rem; font-weight: 600; color: var(--chef-text-primary); } /* Styles recipe title: bottom margin, font size/weight, color */
+  .recipe-content-container p { margin: 0 0 8px 0; font-size: 0.9rem; color: var(--chef-text-secondary); line-height: 1.5; word-break: break-word; } /* Styles paragraphs: bottom margin, font size, color, line height, word breaking */
+  .recipe-content-container p:last-of-type { margin-bottom: 0; } /* Removes bottom margin from the last paragraph */
+  .recipe-content-container p strong, .recipe-content-container .detail-label { font-weight: 600; color: var(--chef-text-primary); margin-right: 6px; } /* Styles labels (strong tags or .detail-label class): bold, primary color, right margin */
+  
+  /* ChefdashboardComponent.css */ /* File name comment */
+  
+  /* ... Keep ALL existing variables and styles from the previous corrected version ... */ /* Comment indicating previous styles are retained */
+  
+  
+  /* ==== Chef Home Section - UPDATED for two columns ==== */ /* Section heading for updated Chef Home layout */
+  .chef-home-section { /* New parent container for home content */
+    display: flex; /* Enables flexbox layout */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 40px;       /* Space between left text and right image */
+    align-items: flex-start; /* Align items to the top */
+  } /* Closing brace for .chef-home-section */
+  
+  .chef-home-left { /* Selector for the left column (text content) */
+    flex: 1; /* Takes up available space */
+    min-width: 300px; /* Prevent it getting too squished */
+  } /* Closing brace for .chef-home-left */
+  
+  .chef-home-overview h3 { margin-top: 0; } /* Already had this - Removes top margin from h3 */
+  .chef-home-overview p.welcome-message { font-size: 1.1rem; font-weight: 500; color: var(--chef-text-primary); } /* Styles the welcome message: larger font, medium weight, primary color */
+  .chef-home-overview h4 { /* Styles the 'Quick Stats' Title */
+      margin-top: 30px; /* Space above stats */
+      margin-bottom: 15px; /* Space below title */
+      font-size: 1.2rem; /* Sets font size */
+      color: var(--chef-text-primary); /* Sets text color */
+      border-bottom: 1px solid var(--chef-border-color); /* Adds bottom border */
+      padding-bottom: 8px; /* Adds padding below text, above border */
+      font-weight: 600; /* Makes text bold */
+  } /* Closing brace for overview h4 */
+  .chef-quick-stats { /* Styles the container for stat cards */
+      display: grid; /* Uses grid layout */
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* Responsive columns, smaller minimum width */
+      gap: 20px; /* Sets gap between stat cards */
+      margin-top: 0; /* Remove extra top margin (handled by h4 now) */
+      margin-bottom: 20px; /* Space below stats */
+      max-width: 300px; /* Optional: constrain width of stats area */
+  } /* Closing brace for .chef-quick-stats */
+  .stat-card { /* Styles individual stat cards */
+      /* Keep existing stat-card styles, they work fine */ /* Comment indicating styles are reused */
+      background-color: var(--chef-card-bg); padding: 20px 15px; border-radius: 8px; /* Sets background, padding, border radius */
+      text-align: center; box-shadow: var(--chef-card-shadow); /* Centers text, applies shadow */
+      border: 1px solid var(--chef-border-color); border-top: 3px solid var(--chef-navbar-accent); /* Adds border, thinner top accent border */
+      transition: transform 0.2s ease, box-shadow 0.2s ease; /* Adds hover transitions */
+  } /* Closing brace for .stat-card */
+  .stat-card:hover { transform: translateY(-3px); box-shadow: var(--chef-card-hover-shadow); } /* Slightly smaller lift on hover */
+  .stat-number { font-size: 2rem; } /* Slightly smaller stat number maybe */
+  .stat-label { font-size: 0.8rem; } /* Slightly smaller stat label maybe */
+  
+  .chef-home-right { /* Selector for the right column (profile image) */
+    flex-basis: 180px; /* Set a fixed or max-width for the image column */
+    flex-shrink: 0; /* Prevent the column from shrinking */
+    display: flex; /* Center placeholder/image within the column */
+    justify-content: center; /* Horizontally centers content */
+    align-items: center; /* Vertically centers content */
+    padding-top: 10px; /* Align roughly with welcome text */
+  } /* Closing brace for .chef-home-right */
+  
+  .chef-dashboard-profile-image { /* Styles the actual profile image */
+    width: 100%; /* Fill the container width */
+    max-width: 160px; /* Control max size */
+    height: auto; /* Maintain aspect ratio */
+    aspect-ratio: 1 / 1; /* Ensure it's square before clipping */
+    border-radius: 50%; /* Make it round */
+    object-fit: cover; /* Crop nicely */
+    border: 3px solid var(--chef-navbar-accent); /* Add an accent border */
+    box-shadow: 0 4px 10px rgba(0,0,0, 0.1); /* Add some shadow */
+  } /* Closing brace for .chef-dashboard-profile-image */
+  
+  .chef-dashboard-profile-placeholder { /* Styles the placeholder for the profile image */
+    width: 160px; /* Match image size */
+    height: 160px; /* Match image size */
+    border-radius: 50%; /* Make it round */
+    background-color: var(--chef-placeholder-bg-light); /* Sets light background */
+    border: 3px dashed var(--chef-border-color); /* Dashed border for placeholder */
+    display: flex; /* Enables flexbox for centering content */
+    align-items: center; /* Vertically centers content */
+    justify-content: center; /* Horizontally centers content */
+    text-align: center; /* Centers text within */
+    font-size: 0.9rem; /* Sets font size */
+    color: var(--chef-text-secondary); /* Sets text color */
+    font-style: italic; /* Makes text italic */
+  } /* Closing brace for .chef-dashboard-profile-placeholder */
+  
+  
+  /* --- Other styles remain the same --- */ /* Comment indicating other styles are unchanged */
+  /* ... (.recipe-list, .recipe-card, .form-container, etc.) ... */ /* Placeholder for other existing styles */
+  
+  /* --- Responsive --- */ /* Section heading for responsive adjustments */
+  @media (max-width: 768px) { /* Styles for screens 768px wide or less */
+      .chef-home-section { /* Selects the home section container */
+          gap: 25px; /* Reduce gap on smaller screens */
+      } /* Closing brace for .chef-home-section media query */
+       .chef-home-left { /* Selects the left column */
+          min-width: unset; /* Allow left column to shrink fully */
+          flex-basis: 100%; /* Stack left content (takes full width) */
+          order: 1;         /* Show text content below the image */
+      } /* Closing brace for .chef-home-left media query */
+       .chef-home-right { /* Selects the right column */
+          flex-basis: 100%; /* Stack image (takes full width) */
+          order: 0;         /* Show image first */
+          padding-top: 0; /* Remove top padding when stacked */
+          margin-bottom: 20px; /* Add space below image when stacked */
+      } /* Closing brace for .chef-home-right media query */
+      .chef-dashboard-profile-image, /* Selects the profile image */
+      .chef-dashboard-profile-placeholder { /* Selects the profile placeholder */
+          max-width: 130px; /* Smaller image on mobile */
+          height: 130px; /* Smaller image on mobile */
+          margin-left: auto; /* Center when stacked */
+          margin-right: auto; /* Center when stacked */
+      } /* Closing brace for profile image/placeholder media query */
+      .chef-quick-stats { max-width: unset;} /* Allow stats full width */
+      /* ... keep other existing responsive styles ... */ /* Comment indicating other responsive rules apply */
+  } /* Closing brace for max-width 768px media query */
+  
+  
+  /* Rating Section Styling */ /* Section heading for rating styles */
+  .rating-section { margin-top: 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; color: var(--chef-text-secondary); font-size: 0.9rem;} /* Styles rating container: margins, flex alignment, gap, color, font size */
+  .rating-section .detail-label { margin-right: 0; } /* Removes right margin from labels within rating */
+  .star-rating-display { line-height: 1; } /* Container for stars, prevents extra line height */
+  .star { font-size: 1.15rem; color: var(--chef-star-empty); margin-right: 1px;} /* Styles individual stars: size, empty color, tiny right margin */
+  .star.filled { color: var(--chef-star-filled); } /* Styles filled stars: sets filled color */
+  .rating-section span:not(.detail-label):not(.star) { font-weight: 500; color: var(--chef-text-secondary); margin-left: 5px; font-size: 0.85rem;} /* Styles rating text (e.g., 4.5/5): weight, color, left margin, size */
+  /* Remove the :contains selector for broader compatibility */ /* Comment explaining removal of a potentially problematic selector */
+  
+  /* Actions at the bottom */ /* Section heading for recipe card actions */
+  .recipe-actions { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--chef-border-color); display: flex; gap: 10px; align-self: flex-start; } /* Styles actions container: push to bottom, top padding/border, flex alignment, gap, align left */
+  .recipe-actions button { border: none; padding: 7px 16px; font-size: 0.8rem; font-weight: 600; cursor: pointer; border-radius: 6px; transition: background-color 0.2s ease; color: white; text-transform: uppercase; letter-spacing: 0.5px; } /* General styles for action buttons: no border, padding, font size/weight, cursor, radius, transition, text color/transform/spacing */
+  /* ... (keep button color styles) ... */ /* Comment indicating button color styles are defined elsewhere */
+  
+  
+  /* --- Responsive Adjustments --- */ /* Section heading for responsive design */
+  
+  @media (max-width: 1200px) { /* Example breakpoint - Adjust as needed */ /* Styles for screens 1200px wide or less */
+    .recipe-list.my-recipes-list, /* Selects 'My Recipes' list */
+    .recipe-list.view-all-list { /* Selects 'View All' list */
+      /* Still 2 columns */ /* Comment explaining layout */
+      grid-template-columns: repeat(2, 1fr); /* Keeps 2 columns */
+    } /* Closing brace for list selectors */
+  } /* Closing brace for max-width 1200px media query */
+  
+  @media (max-width: 992px) { /* Styles for screens 992px wide or less */
+    .chef-dashboard-content { padding: 25px; } /* Reduces content padding */
+    .recipe-list.my-recipes-list, /* Selects 'My Recipes' list */
+    .recipe-list.view-all-list { /* Selects 'View All' list */
+       /* MAYBE go to 1 column earlier, or keep 2? Adjust as needed */ /* Comment suggesting layout consideration */
+       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Example: responsive sizing - fills with columns at least 300px wide */
+       gap: 25px; /* Reduces gap between cards */
+     } /* Closing brace for list selectors */
+    .chef-quick-stats { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } /* Adjusts stats grid columns */
+    .form-container { max-width: 90%; padding: 30px; } /* Adjusts form container width and padding */
+    /* Stack card content */ /* Comment indicating card layout change */
+    .recipe-card { flex-direction: column; } /* Stacks recipe card image and content vertically */
+    .recipe-image-container { flex-basis: auto; min-height: 180px; max-height: 200px; align-self: auto;} /* Resets image container flex basis, adjusts height, resets alignment */
+    .recipe-content-container { flex-basis: auto; } /* Resets content container flex basis */
+    .recipe-actions { align-self: stretch; justify-content: space-between;} /* Stretches actions container, spaces buttons */
+  } /* Closing brace for max-width 992px media query */
+  
+  @media (max-width: 768px) { /* Styles for screens 768px wide or less */
+    /* ... (Keep navbar styles) ... */ /* Comment indicating navbar styles are elsewhere */
+    .chef-dashboard-content { padding: 20px; } /* Reduces content padding */
+    .chef-dashboard-content h2, .chef-dashboard-content h3, .content-title { font-size: 1.3rem; } /* Reduces heading sizes */
+    .recipe-list.my-recipes-list, /* Selects 'My Recipes' list */
+    .recipe-list.view-all-list { /* Selects 'View All' list */
+      /* Force 1 column on smaller screens */ /* Comment explaining layout */
+      grid-template-columns: 1fr; /* Sets a single column layout */
+      gap: 20px; /* Reduces gap */
+    } /* Closing brace for list selectors */
+    .form-container { padding: 25px; margin: 20px 15px; } /* Adjusts form padding and margin */
+    .chef-quick-stats { grid-template-columns: 1fr; } /* Stacks stats into a single column */
+    .recipe-detail-body { flex-direction: column; gap: 15px; } /* Stacks detail view content vertically, reduces gap */
+    .recipe-detail-image { width: 100%; height: 200px; } /* Makes detail image full width, fixed height */
+  } /* Closing brace for max-width 768px media query */
+  .recipe-image-container { /* Selector for the recipe image container */
+      position: relative; /* Needed for absolute positioning of placeholder */
+      /* Add your existing container styles (width, height, background etc.) */ /* Comment reminding about existing styles */
+      background-color: #f0f0f0; /* Example background color for loading/error */
+      display: flex; /* Use flexbox */
+      align-items: center; /* Vertically center content (useful for placeholder) */
+      justify-content: center; /* Horizontally center content (useful for placeholder) */
+      overflow: hidden; /* Hide parts of the image/placeholder that might exceed bounds */
+    } /* Closing brace for .recipe-image-container */
+    
+    .recipe-image-container .recipe-image { /* Selector for the actual image element */
+      display: block; /* Ensure image behaves as a block element */
+      width: 100%; /* Make image fill container width */
+      height: 100%; /* Make image fill container height */
+      object-fit: cover; /* Scale image to maintain aspect ratio while filling container, cropping if necessary */
+    } /* Closing brace for .recipe-image */
+    
+    .recipe-image-container .recipe-image-placeholder { /* Selector for the placeholder element */
+      /* Styles for the placeholder div */ /* Comment indicating placeholder styles */
+      display: flex; /* Use flexbox to center icon/text */
+      flex-direction: column; /* Stack icon and text vertically if both are used */
+      align-items: center; /* Horizontally center items in the flex container */
+      justify-content: center; /* Vertically center items in the flex container */
+      color: #888; /* Set placeholder text/icon color */
+      text-align: center; /* Center text horizontally */
+      width: 100%; /* Make placeholder fill container width */
+      height: 100%; /* Make placeholder fill container height */
+      position: absolute; /* Position absolutely within the relative container */
+      top: 0; /* Position from the top edge */
+      left: 0; /* Position from the left edge */
+      background-color: #f0f0f0; /* Match container background or make slightly different */
+      opacity: 0; /* Hide placeholder by default */
+      transition: opacity 0.3s ease; /* Optional fade effect when showing/hiding */
+      z-index: 1; /* Ensure placeholder is initially behind potentially visible content */
+    } /* Closing brace for .recipe-image-placeholder */
+    
+    .recipe-image-container .recipe-image-placeholder i { /* Selector for an icon (<i> tag) within the placeholder */
+      font-size: 2em; /* Adjust icon size */
+      margin-bottom: 0.5em; /* Add space below the icon if text follows */
+    } /* Closing brace for placeholder icon */
+    
+    /* --- Show Placeholder Logic --- */ /* Section heading for placeholder visibility rules */
+    
+    /* Show if the image tag is hidden due to error (img display: none) */ /* Comment explaining first condition */
+    .recipe-image-container img[style*="display: none"] + .recipe-image-placeholder, /* Selects placeholder immediately following a hidden img */
+    /* Show if the container explicitly gets the error class */ /* Comment explaining second condition */
+    .recipe-image-container.image-error .recipe-image-placeholder, /* Selects placeholder within a container having 'image-error' class */
+    /* Show if there's no img tag at all (imageUrl was null initially) */ /* Comment explaining third condition */
+    .recipe-image-container:not(:has(img)) .recipe-image-placeholder { /* Selects placeholder if container does not contain an img tag */
+       opacity: 1; /* Make placeholder visible */
+       z-index: 3; /* Ensure placeholder is definitely above the (potentially hidden or non-existent) img */
+    } /* Closing brace for placeholder visibility rules */
+    
+    /* Optional: slightly dim the container if there's an error */ /* Comment for optional styling */
+   
+  
+  @media (max-width: 480px) { /* Styles for screens 480px wide or less */
+    /* ... (Keep navbar/font-size adjustments etc.) ... */ /* Comment indicating other styles apply */
+    .recipe-image-container { min-height: 160px; max-height: 180px;} /* Adjusts recipe card image height */
+    .recipe-content-container { padding: 15px; } /* Reduces padding in recipe card content */
+    .recipe-actions button { font-size: 0.75rem; padding: 6px 10px;} /* Reduces action button size and padding */
+  } /* Closing brace for max-width 480px media query */
+  
+  
+  /* Helper class if needed */ /* Section heading for a utility class */
+  .detail-label { /* Apply to spans/strong tags acting as labels */ /* Selector and comment on usage */
+      font-weight: 600; /* Makes text bold */
+      color: var(--chef-text-primary); /* Make labels black */
+      margin-right: 5px; /* Adds space after the label */
+  } /* Closing brace for .detail-label */

@@ -1,0 +1,124 @@
+/* Styling for individual recipe card */
+.recipe-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .recipe-card .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .recipe-card .card-body {
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .recipe-card/* Styling for individual recipe card */
+  .recipe-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .recipe-card .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .recipe-card .card-body {
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .recipe-card/* Styling for individual recipe card */
+  .recipe-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+  }
+  
+  .recipe-card .card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .recikldjlpe-card .card-body {
+    padding: 15px;
+    background-color: #fff;
+  }
+  
+  .recipe-cardkjndkskjs .card-title {
+    font-size: 1kjkjsdknsdks.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .recipe-card h6 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .recipe-card ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .recipe-card ul li {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+   .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .recipe-card h6 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .recipe-card ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .recipe-card ul li {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+   .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .recipe-card h6 {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .recipe-card ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .recipe-card ul li {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+  

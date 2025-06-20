@@ -1,0 +1,27 @@
+.chef-recipes-container {
+    padding: 20px;
+  }
+  
+  .recipe-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+  
+  .recipe-image {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .delete-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  

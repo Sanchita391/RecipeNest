@@ -1,0 +1,722 @@
+/* AdmindashboardComponent.css - Revamped Styles (Sky Blue Theme) */ /* Single-line comment describing the file's purpose and theme */
+
+/* --- Variables --- */ /* Section heading comment for CSS custom properties (variables) */
+:root { /* Selector targeting the root element (<html>), used for defining global CSS variables */
+  /* Font & Base */ /* Subsection comment for font and base styling variables */
+  --admin-font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'; /* Defines the primary font stack for the admin interface */
+  --admin-content-bg: #f8f9fa;        /* Sets the background color for the main content area (very light grey) */
+  --admin-text-primary: #212529;     /* Defines the primary text color (darker grey) for better contrast */
+  --admin-text-secondary: #6c757d;   /* Defines the secondary text color (standard grey) */
+  --admin-border-color: #dee2e6;      /* Sets the default border color */
+  --admin-border-radius: 6px;         /* Sets the default border radius for rounded corners (slightly reduced) */
+  --admin-transition-speed: 0.2s;     /* Defines the standard speed for CSS transitions */
+
+  /* Layout */ /* Subsection comment for layout-related variables */
+  --admin-navbar-height: 60px;       /* Sets the height of the admin navigation bar (slightly reduced) */
+  --admin-content-padding: 30px 40px; /* Defines the default padding for the content area (top/bottom 30px, left/right 40px) */
+  --admin-content-padding-mobile: 20px; /* Defines the content area padding specifically for mobile viewports */
+
+  /* *** Sky Blue Navbar Theme *** */ /* Subsection comment for variables specific to the Sky Blue Navbar theme */
+  --admin-navbar-bg: #ffffff;        /* Sets the background color of the navbar (white) */
+  --admin-navbar-border: #e9ecef;     /* Defines the border color for the navbar */
+  --admin-navbar-text: #495057;       /* Sets the default text color for navbar items (slightly darker muted grey) */
+  --admin-navbar-text-hover: #0d6efd; /* Defines the text color for navbar items on hover (standard Bootstrap blue) */
+  --admin-navbar-accent: #64B5F6;    /* Defines the main accent color (Sky Blue - Material Blue 400) */
+  --admin-navbar-accent-dark: #42A5F5; /* Defines a darker shade of the accent color for hover/active states */
+  --admin-navbar-brand-color: var(--admin-navbar-accent); /* Sets the color of the navbar brand text, using the accent color variable */
+  --admin-navbar-active-bg: rgba(100, 181, 246, 0.1); /* Defines the background color for active navbar items (light blue, translucent) */
+  --admin-navbar-active-text: var(--admin-navbar-accent-dark); /* Sets the text color for active navbar items, using the darker accent color */
+  --admin-navbar-logout-color: #dc3545; /* Defines the text color for the logout button (standard Bootstrap Red) */
+  --admin-navbar-logout-hover-bg: rgba(220, 53, 69, 0.1); /* Sets the background color for the logout button on hover (light red, translucent) */
+  --admin-navbar-logout-hover-color: #bb2d3b; /* Defines the text color for the logout button on hover (darker red) */
+
+  /* Cards & Shadows */ /* Subsection comment for card and shadow related variables */
+  --admin-card-bg: #ffffff; /* Sets the background color for card elements (white) */
+  --admin-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03); /* Defines a softer box shadow style for elements */
+  --admin-card-hover-shadow: 0 4px 10px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.05); /* Defines a more prominent shadow for card elements on hover */
+
+  /* Action & Status Colors */ /* Subsection comment for action button and status indicator colors */
+  --admin-color-approve: #198754;  /* Defines the color for 'approve' actions (Bootstrap Green) */
+  --admin-color-approve-hover: #157347; /* Defines the hover color for 'approve' actions */
+  --admin-color-reject: #ffc107;    /* Defines the color for 'reject' actions (Bootstrap Yellow/Amber) */
+  --admin-color-reject-hover: #e0a800; /* Defines the hover color for 'reject' actions */
+  --admin-color-delete: #dc3545;    /* Defines the color for 'delete' actions (Bootstrap Red) */
+  --admin-color-delete-hover: #bb2d3b; /* Defines the hover color for 'delete' actions */
+  --admin-color-view: #0d6efd;      /* Defines the color for 'view' actions (Bootstrap Blue) */
+  --admin-color-view-hover: #0b5ed7; /* Defines the hover color for 'view' actions */
+  --admin-color-pending: #6c757d;   /* Defines the color for 'pending' status (Bootstrap Grey) */
+  --admin-button-text: #ffffff;     /* Sets the default text color for action buttons (white) */
+  --admin-button-reject-text: #212529; /* Sets the specific text color for the yellow 'reject' button (dark text for contrast) */
+
+  /* Stars */ /* Subsection comment for star rating display variables */
+  --admin-star-filled: #ffc107; /* Defines the color for filled stars (Amber) */
+  --admin-star-empty: #e0e0e0;  /* Defines the color for empty stars (Lighter gray) */
+
+  /* Input/Focus */ /* Subsection comment for input field focus state variables */
+  --admin-input-focus-color: var(--admin-navbar-accent); /* Sets the border color for focused inputs, using the sky blue accent */
+  --admin-input-focus-shadow: rgba(100, 181, 246, 0.25); /* Defines the box shadow (glow) for focused inputs (light sky blue translucent) */
+} /* End of the :root selector block */
+
+/* --- General Body Styles --- */ /* Section heading comment for general body styles */
+body { /* Selector targeting the main <body> element of the HTML document */
+  font-family: var(--admin-font-family); /* Applies the defined font stack from the variable to the entire body */
+  margin: 0; /* Removes the default browser margin from the body */
+  background-color: var(--admin-content-bg); /* Sets the default background color for the page using the variable */
+  color: var(--admin-text-primary); /* Sets the default text color for the page using the variable */
+  line-height: 1.6; /* Sets the default line height for better readability */
+  -webkit-font-smoothing: antialiased; /* Applies font smoothing for WebKit browsers (Chrome, Safari) */
+  -moz-osx-font-smoothing: grayscale; /* Applies font smoothing for Firefox on macOS */
+} /* End of the body selector block */
+
+/* --- Navbar --- */ /* Section heading comment for navigation bar styles */
+.admin-dashboard-navbar { /* Selector targeting elements with the class 'admin-dashboard-navbar' */
+  height: var(--admin-navbar-height); /* Sets the height of the navbar using the variable */
+  background-color: var(--admin-navbar-bg); /* Sets the navbar background color using the variable */
+  padding: 0 30px; /* Sets padding (0 top/bottom, 30px left/right) */
+  display: flex; /* Uses flexbox for layout within the navbar */
+  align-items: center; /* Aligns flex items vertically in the center */
+  justify-content: space-between; /* Distributes space between the brand and actions */
+  border-bottom: 1px solid var(--admin-navbar-border); /* Adds a bottom border using the variable color */
+  box-shadow: var(--admin-shadow); /* Applies the default shadow using the variable */
+  position: sticky; /* Makes the navbar stick to the top when scrolling */
+  top: 0; /* Positions the sticky navbar at the top of the viewport */
+  left: 0; /* Positions the sticky navbar at the left edge */
+  width: 100%; /* Makes the navbar span the full width */
+  z-index: 1030; /* Sets a high stacking order to keep the navbar above other content */
+  box-sizing: border-box; /* Includes padding and border in the element's total width and height */
+} /* End of the .admin-dashboard-navbar selector block */
+
+.admin-dashboard-navbar .navbar-brand a { /* Selector targeting 'a' elements within elements with class 'navbar-brand' inside the navbar */
+  font-size: 1.5rem; /* Sets the font size for the brand link (slightly smaller) */
+  font-weight: 700; /* Sets the font weight to bold */
+  color: var(--admin-navbar-brand-color); /* Sets the text color using the brand color variable (Sky Blue) */
+  text-decoration: none; /* Removes the default underline from the link */
+  transition: opacity var(--admin-transition-speed) ease; /* Adds a smooth transition effect for opacity changes */
+  white-space: nowrap; /* Prevents the brand text from wrapping to the next line */
+} /* End of the .navbar-brand a selector block */
+.admin-dashboard-navbar .navbar-brand a:hover { /* Selector targeting the brand link on hover */
+  opacity: 0.8; /* Reduces the opacity slightly on hover */
+} /* End of the .navbar-brand a:hover selector block */
+
+.admin-dashboard-navbar .navbar-actions { /* Selector targeting elements with class 'navbar-actions' inside the navbar */
+  display: flex; /* Uses flexbox for layout of action buttons */
+  align-items: center; /* Aligns action buttons vertically in the center */
+  gap: 10px; /* Sets the spacing between the action buttons */
+} /* End of the .navbar-actions selector block */
+
+.admin-dashboard-navbar .navbar-button { /* Selector targeting elements with class 'navbar-button' inside the navbar */
+  background-color: transparent; /* Sets the default background to transparent */
+  border: none; /* Removes any default border */
+  padding: 8px 16px; /* Sets padding inside the button (adjusted) */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  font-size: 0.9rem; /* Sets the font size for the button text */
+  font-weight: 500; /* Sets the font weight (medium) */
+  color: var(--admin-navbar-text); /* Sets the text color using the variable */
+  transition: background-color var(--admin-transition-speed) ease, color var(--admin-transition-speed) ease; /* Adds smooth transitions for background and text color changes */
+  text-decoration: none; /* Removes underline if the button is an 'a' tag */
+  display: inline-flex; /* Uses flexbox for alignment within the button (e.g., icon + text) */
+  align-items: center; /* Aligns content vertically center within the button */
+  justify-content: center; /* Aligns content horizontally center within the button */
+  text-align: center; /* Centers the text (useful fallback) */
+  white-space: nowrap; /* Prevents button text from wrapping */
+} /* End of the .navbar-button selector block */
+
+.admin-dashboard-navbar .navbar-button:hover:not(.active) { /* Selector targeting navbar buttons on hover, *except* when they also have the 'active' class */
+  color: var(--admin-navbar-text-hover); /* Changes text color on hover using the variable (Bootstrap blue) */
+  background-color: #f1f3f5; /* Sets a light grey background on hover */
+} /* End of the .navbar-button:hover:not(.active) selector block */
+
+.admin-dashboard-navbar .navbar-button.active { /* Selector targeting navbar buttons that *also* have the 'active' class */
+  color: var(--admin-navbar-active-text); /* Sets the text color for active buttons (Darker Sky Blue Text) */
+  font-weight: 600; /* Makes the text slightly bolder for active buttons */
+  background-color: var(--admin-navbar-active-bg); /* Sets the background color for active buttons (Light Sky Blue BG) */
+} /* End of the .navbar-button.active selector block */
+
+/* Logout Button Specific Styles */ /* Section comment for styles specific to the logout button */
+.admin-dashboard-navbar .navbar-button.logout-button { /* Selector targeting navbar buttons with the 'logout-button' class */
+  color: var(--admin-navbar-logout-color); /* Sets the text color using the logout color variable (Red) */
+} /* End of the .logout-button selector block */
+.admin-dashboard-navbar .navbar-button.logout-button:hover { /* Selector targeting the logout button on hover */
+    background-color: var(--admin-navbar-logout-hover-bg); /* Sets the background color on hover using the variable (Light Red, translucent) */
+    color: var(--admin-navbar-logout-hover-color); /* Sets the text color on hover using the variable (Darker Red) */
+} /* End of the .logout-button:hover selector block */
+
+/* Focus state for accessibility */ /* Section comment explaining the purpose of the following rule */
+.admin-dashboard-navbar .navbar-button:focus-visible { /* Selector targeting navbar buttons when they receive focus via keyboard/assistive tech */
+  outline: 2px solid var(--admin-navbar-accent); /* Adds a visible outline using the accent color */
+  outline-offset: 2px; /* Adds a small gap between the button and the outline */
+  box-shadow: 0 0 0 3px var(--admin-navbar-active-bg); /* Adds an additional shadow glow effect for focus */
+} /* End of the .navbar-button:focus-visible selector block */
+
+
+/* --- Dashboard Content Area --- */ /* Section heading comment for the main content area styles */
+.dashboard-content { /* Selector targeting elements with the class 'dashboard-content' */
+  padding: var(--admin-content-padding); /* Applies the defined padding using the variable */
+  background-color: var(--admin-content-bg); /* Sets the background color using the variable */
+  flex-grow: 1; /* Allows this element to grow and take available space in a flex container */
+  min-height: calc(100vh - var(--admin-navbar-height)); /* Ensures content area fills at least the remaining viewport height below the navbar */
+} /* End of the .dashboard-content selector block */
+
+/* Section Title */ /* Comment describing the style for section titles within the content */
+.dashboard-content h3 { /* Selector targeting h3 elements directly inside '.dashboard-content' */
+  font-size: 1.75rem; /* Sets a larger font size for section titles */
+  color: var(--admin-text-primary); /* Sets the text color using the primary text variable */
+  margin-top: 0; /* Removes the default top margin from h3 elements */
+  margin-bottom: 30px; /* Adds more space below the section title */
+  font-weight: 600; /* Sets the font weight (semi-bold) */
+  border-bottom: 1px solid var(--admin-border-color); /* Adds a subtle bottom border as a separator */
+  padding-bottom: 15px; /* Adds space between the text and the bottom border */
+} /* End of the .dashboard-content h3 selector block */
+
+.loading-message, .info-message { /* Selector targeting elements with class 'loading-message' OR 'info-message' */
+  text-align: center; /* Centers the text within these elements */
+  color: var(--admin-text-secondary); /* Sets the text color to the secondary grey */
+  margin: 40px 0; /* Adds vertical margin around the message */
+  font-size: 1rem; /* Sets the font size */
+} /* End of the .loading-message, .info-message selector block */
+
+.error-message { /* Selector targeting elements with the class 'error-message' */
+  text-align: center; /* Centers the error text */
+  color: #842029; /* Sets a dark red color for the error text */
+  background-color: #f8d7da; /* Sets a light red background color */
+  border: 1px solid #f5c2c7; /* Adds a red border */
+  padding: 1rem; /* Adds padding around the error message text using rem units */
+  border-radius: var(--admin-border-radius); /* Applies the default rounded corners */
+  margin: 25px auto; /* Adds vertical margin and centers the block horizontally */
+  max-width: 800px; /* Limits the maximum width of the error message block */
+} /* End of the .error-message selector block */
+/* Subtle error styling for less critical info */ /* Comment describing a variation of the error message style */
+.error-message.info-subtle { /* Selector targeting elements with BOTH 'error-message' and 'info-subtle' classes */
+  background-color: transparent; /* Overrides the background color to be transparent */
+  border: none; /* Removes the border */
+  padding: 0; /* Removes the padding */
+  color: var(--admin-color-delete); /* Sets the text color to the delete color (Red) */
+  font-size: 0.9rem; /* Sets a slightly smaller font size */
+  font-style: italic; /* Makes the text italic */
+  max-width: 100%; /* Allows the element to take full width if needed */
+  text-align: left; /* Aligns the text to the left */
+  margin-top: -15px; /* Applies a negative top margin to pull it closer to the element above */
+  margin-bottom: 20px; /* Adds space below the subtle error message */
+} /* End of the .error-message.info-subtle selector block */
+
+
+/* ==== Admin Home Section ==== */ /* Section heading comment for the Admin Home specific styles */
+.admin-home-overview { padding: 0; } /* Selects '.admin-home-overview' and removes any padding */
+.admin-home-overview h3 { margin-bottom: 20px; border-bottom: none; padding-bottom: 0; } /* Selects h3 inside '.admin-home-overview', adjusts margin, removes border and padding */
+.admin-home-overview p { margin-bottom: 1rem; color: var(--admin-text-secondary); font-size: 1rem; } /* Selects p inside '.admin-home-overview', sets bottom margin, secondary text color, and font size */
+
+.admin-quick-stats { /* Selector targeting the container for quick statistics cards */
+  display: grid; /* Uses CSS Grid for layout */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Creates responsive grid columns: fit as many 200px+ columns as possible, distributing space (slightly larger min width) */
+  gap: 25px; /* Sets the gap between grid items (stat cards) */
+  margin: 30px 0; /* Adds vertical margin around the stats section */
+} /* End of the .admin-quick-stats selector block */
+.stat-card { /* Selector targeting individual statistic card elements */
+  background-color: var(--admin-card-bg); /* Sets the background color using the card background variable */
+  padding: 25px; /* Adds padding inside the card */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  text-align: center; /* Centers the text content within the card */
+  box-shadow: var(--admin-shadow); /* Applies the default shadow */
+  border: 1px solid var(--admin-border-color); /* Adds a border using the default border color */
+  border-top: 4px solid var(--admin-navbar-accent); /* Adds a thicker top border using the Sky Blue accent color */
+  transition: transform var(--admin-transition-speed) ease, box-shadow var(--admin-transition-speed) ease; /* Adds smooth transitions for transform and shadow changes on hover */
+} /* End of the .stat-card selector block */
+.stat-card:hover { /* Selector targeting stat cards on hover */
+  transform: translateY(-4px); /* Moves the card slightly upwards on hover */
+  box-shadow: var(--admin-card-hover-shadow); /* Applies the stronger hover shadow */
+} /* End of the .stat-card:hover selector block */
+.stat-number { /* Selector targeting the element displaying the statistic number */
+  display: block; /* Makes the element take up its own line */
+  font-size: 2.5rem; /* Sets a large font size for the number */
+  font-weight: 700; /* Sets the font weight to bold */
+  color: var(--admin-navbar-accent-dark); /* Sets the color to the darker Sky Blue accent for the number */
+  margin-bottom: 8px; /* Adds space below the number */
+  line-height: 1.1; /* Adjusts the line height for tighter spacing */
+} /* End of the .stat-number selector block */
+.stat-label { /* Selector targeting the element displaying the statistic label */
+  font-size: 0.9rem; /* Sets the font size for the label */
+  color: var(--admin-text-secondary); /* Sets the text color to secondary grey */
+  text-transform: uppercase; /* Converts the label text to uppercase */
+  letter-spacing: 0.5px; /* Adds slight spacing between letters */
+  font-weight: 500; /* Sets the font weight (medium) */
+} /* End of the .stat-label selector block */
+.stat-error { /* Selector targeting elements indicating an error fetching a stat */
+  display: inline-block; /* Allows margin/padding while staying inline */
+  margin-left: 5px; /* Adds space to its left, separating it from the label/number */
+  color: var(--admin-color-delete); /* Sets the text color to the delete/error red */
+  font-size: 0.8rem; /* Sets a smaller font size for the error indicator */
+  font-weight: bold; /* Makes the error indicator text bold */
+} /* End of the .stat-error selector block */
+
+
+/* --- Lists (Recipes & Reviews) --- */ /* Section heading comment for list container styles */
+.recipe-list, .review-list { /* Selector targeting containers for recipe OR review lists */
+  display: grid; /* Uses CSS Grid for layout */
+  gap: 30px; /* Sets a consistent gap between grid items (cards) */
+  margin-top: 0; /* Removes extra top margin (space is handled by the preceding h3) */
+} /* End of the .recipe-list, .review-list selector block */
+/* Specific columns for each list */ /* Comment indicating the following rules define grid columns for specific lists */
+.review-list { grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); } /* Defines responsive grid columns for the review list (min 340px width) */
+.recipe-list.admin-recipe-list { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); } /* Defines responsive grid columns for the admin recipe list (min 380px width, wider cards) */
+
+
+/* --- Recipe Card Styles --- */ /* Section heading comment for recipe card styles */
+.recipe-card.admin-recipe-card { /* Selector targeting elements with BOTH 'recipe-card' and 'admin-recipe-card' classes */
+  display: flex; /* Uses flexbox for layout */
+  flex-direction: column; /* Stacks flex items (image container, content container) vertically */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  border: 1px solid var(--admin-border-color); /* Adds the default border */
+  background-color: var(--admin-card-bg); /* Sets the card background color */
+  box-shadow: var(--admin-shadow); /* Applies the default shadow */
+  transition: transform var(--admin-transition-speed) ease, box-shadow var(--admin-transition-speed) ease; /* Adds smooth transitions for hover effects */
+  overflow: hidden; /* Ensures content (like images) respects the card's border radius */
+} /* End of the .recipe-card.admin-recipe-card selector block */
+.recipe-card.admin-recipe-card:hover { /* Selector targeting admin recipe cards on hover */
+  transform: translateY(-5px); /* Moves the card slightly upwards on hover */
+  box-shadow: var(--admin-card-hover-shadow); /* Applies the stronger hover shadow */
+} /* End of the .recipe-card.admin-recipe-card:hover selector block */
+
+.admin-recipe-image-container { /* Selector targeting the container for the recipe image */
+  width: 100%; /* Makes the container take the full width of the card */
+  flex-shrink: 0; /* Prevents the image container from shrinking in the flex layout */
+  position: relative; /* Sets positioning context (useful for potential future overlays) */
+  aspect-ratio: 16 / 9; /* Sets a fixed 16:9 aspect ratio for the image area */
+  background-color: #e9ecef; /* Sets a light grey placeholder background color while image loads */
+} /* End of the .admin-recipe-image-container selector block */
+.admin-recipe-image-container .recipe-image { /* Selector targeting the image element itself within the container */
+  width: 100%; /* Makes the image fill the container width */
+  height: 100%; /* Makes the image fill the container height */
+  object-fit: cover; /* Scales the image to maintain aspect ratio while filling the container, cropping if necessary */
+  display: block; /* Removes extra space below the image sometimes caused by default inline display */
+} /* End of the .recipe-image selector block */
+.admin-recipe-image-placeholder { /* Selector targeting the placeholder element shown if no image exists */
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; /* Styles the placeholder to fill the container and center its content */
+  color: var(--admin-text-secondary); font-style: italic; font-size: 0.9rem; /* Sets the placeholder text style (grey, italic, small font) */
+} /* End of the .admin-recipe-image-placeholder selector block */
+
+.admin-recipe-content-container { /* Selector targeting the container for the recipe text content */
+  padding: 20px; /* Adds padding inside the content area */
+  display: flex; /* Uses flexbox for layout within the content area */
+  flex-direction: column; /* Stacks content items vertically */
+  flex-grow: 1; /* Allows the content area to grow and fill remaining card space */
+} /* End of the .admin-recipe-content-container selector block */
+.admin-recipe-content-container h4 { /* Selector targeting the h4 (recipe title) within the content container */
+  font-size: 1.2rem; /* Sets a slightly larger font size for the recipe title */
+  font-weight: 600; /* Sets the font weight (semi-bold) */
+  color: var(--admin-text-primary); /* Sets the text color using the primary text variable */
+  margin: 0 0 12px 0; /* Sets margins (0 top/left/right, 12px bottom) providing space below title */
+} /* End of the h4 selector block */
+.admin-recipe-content-container p { /* Selector targeting paragraphs within the content container */
+  font-size: 0.9rem; /* Sets the font size for descriptive text */
+  color: var(--admin-text-secondary); /* Sets the text color to secondary grey */
+  margin: 5px 0; /* Sets small vertical margins */
+  line-height: 1.5; /* Sets the line height for readability */
+} /* End of the p selector block */
+.admin-recipe-content-container p strong { /* Selector targeting 'strong' elements within those paragraphs (used for labels like "Chef:") */
+  font-weight: 500; /* Sets the font weight (medium) */
+  color: var(--admin-text-primary); /* Sets the text color to primary for emphasis */
+  margin-right: 6px; /* Adds space after the strong text label */
+} /* End of the p strong selector block */
+.recipe-actions { /* Selector targeting the container for action buttons on a recipe card */
+  margin-top: auto; /* Pushes the actions container to the bottom of the flex column layout */
+  padding-top: 15px; /* Adds space above the actions */
+  display: flex; /* Uses flexbox for button layout */
+  gap: 10px; /* Sets the space between the action buttons */
+  border-top: 1px solid var(--admin-border-color); /* Adds a separator line above the actions */
+  margin-top: 15px; /* Adds space between the main content and the top border of the actions section */
+} /* End of the .recipe-actions selector block */
+
+/* --- Review Card Styles --- */ /* Section heading comment for review card styles */
+.review-card.admin-review-card { /* Selector targeting elements with BOTH 'review-card' and 'admin-review-card' classes */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  border: 1px solid var(--admin-border-color); /* Adds the default border */
+  background-color: var(--admin-card-bg); /* Sets the card background color */
+  box-shadow: var(--admin-shadow); /* Applies the default shadow */
+  transition: transform var(--admin-transition-speed) ease, box-shadow var(--admin-transition-speed) ease; /* Adds smooth transitions for hover effects */
+  display: flex; /* Uses flexbox for layout */
+  flex-direction: column; /* Stacks flex items vertically */
+  padding: 20px; /* Adds padding inside the card */
+  gap: 12px; /* Sets the space between direct child elements within the card */
+} /* End of the .review-card.admin-review-card selector block */
+.review-card.admin-review-card:hover { /* Selector targeting admin review cards on hover */
+  transform: translateY(-5px); /* Moves the card slightly upwards on hover */
+  box-shadow: var(--admin-card-hover-shadow); /* Applies the stronger hover shadow */
+} /* End of the .review-card.admin-review-card:hover selector block */
+
+.review-card.admin-review-card p { /* Selector targeting paragraphs within the review card */
+  font-size: 0.9rem; /* Sets the font size for info text */
+  color: var(--admin-text-secondary); /* Sets the text color to secondary grey */
+  margin: 0; /* Removes default paragraph margins */
+  line-height: 1.5; /* Sets the line height */
+} /* End of the p selector block */
+.review-card.admin-review-card p strong { /* Selector targeting 'strong' elements within those paragraphs (for labels) */
+  font-weight: 500; /* Sets the font weight (medium) */
+  color: var(--admin-text-primary); /* Sets the text color to primary for labels */
+  margin-right: 6px; /* Adds space after the strong text label */
+} /* End of the p strong selector block */
+.review-card.admin-review-card .review-text { /* Selector targeting the element containing the main review comment text */
+  font-style: normal; /* Ensures the text is not italic by default */
+  background-color: #f8f9fa; /* Sets a very light grey background for the text block */
+  padding: 12px 15px; /* Adds padding inside the text block */
+  border-radius: 4px; /* Applies slightly smaller rounded corners */
+  border: 1px solid #f1f3f5; /* Adds a very light border */
+  color: var(--admin-text-secondary); /* Sets the text color within the review text block */
+  max-height: 150px; /* Limits the maximum height, allowing slightly more text to be visible initially */
+  overflow-y: auto; /* Adds a vertical scrollbar if the text exceeds the max height */
+  margin-top: 5px; /* Adds a small space above the text block */
+  margin-bottom: 5px; /* Adds a small space below the text block */
+  font-size: 0.9rem; /* Sets the font size for the review text */
+  line-height: 1.6; /* Sets a slightly taller line height for readability in the text block */
+} /* End of the .review-text selector block */
+.star-rating-display { display: flex; align-items: center; gap: 3px; } /* Selector for the star rating container, uses flexbox to align stars horizontally, adds small gap between stars */
+.star-rating-display .star { font-size: 1.15rem; color: var(--admin-star-empty); } /* Styles individual star elements (size, default empty color using variable) */
+.star-rating-display .star.filled { color: var(--admin-star-filled); } /* Styles filled stars by changing their color using the filled star variable */
+
+.review-rating { display: flex; align-items: center; gap: 8px; } /* Selector for the container holding rating label and value, uses flexbox for horizontal alignment, adds gap */
+.review-rating strong { color: var(--admin-text-primary); } /* Styles the 'Rating:' label text using primary color */
+.review-rating span:not(.star) { color: var(--admin-text-secondary); font-size: 0.9rem; } /* Styles the rating value text (e.g., '4.5'), excluding star elements, using secondary color and specific size */
+
+.status-badge { /* Selector for status indicator badges (Pending, Approved, Rejected) */
+  padding: 4px 12px; /* Sets padding inside the badge */
+  border-radius: 15px; /* Creates a pill shape with large border radius */
+  font-size: 0.75rem; /* Sets a small font size */
+  font-weight: 600; /* Sets the font weight (semi-bold) */
+  color: #fff; /* Sets the default text color to white */
+  text-transform: uppercase; /* Converts text to uppercase */
+  display: inline-block; /* Allows padding/margin while staying inline with text */
+  letter-spacing: 0.5px; /* Adds slight letter spacing for clarity */
+  line-height: 1; /* Prevents extra vertical space within the badge */
+  vertical-align: middle; /* Aligns the badge vertically with surrounding text or elements */
+} /* End of the .status-badge selector block */
+.status-badge.status-pending { background-color: var(--admin-color-pending); } /* Sets background color for 'pending' status using the grey variable */
+.status-badge.status-approved { background-color: var(--admin-color-approve); } /* Sets background color for 'approved' status using the green variable */
+.status-badge.status-rejected { background-color: var(--admin-color-reject); color: var(--admin-button-reject-text); /* Dark text */} /* Sets background color for 'rejected' status (yellow variable) and overrides text color to dark (variable) for contrast */
+
+.review-actions { /* Selector targeting the container for action buttons on a review card */
+  margin-top: 15px; /* Adds space above the actions container */
+  display: flex; /* Uses flexbox for button layout */
+  flex-wrap: wrap; /* Allows buttons to wrap to the next line on smaller screens if needed */
+  gap: 8px; /* Sets the space between the action buttons */
+  padding-top: 15px; /* Adds space above the buttons themselves */
+  border-top: 1px solid var(--admin-border-color); /* Adds a separator line above the actions */
+} /* End of the .review-actions selector block */
+
+
+/* --- Buttons (General Action Buttons in Cards) --- */ /* Section heading comment for general button styles used in cards and potentially other areas */
+.recipe-actions button, /* Selects buttons inside .recipe-actions */
+.review-actions button, /* Selects buttons inside .review-actions */
+.action-button { /* Selects any element with the class 'action-button' (for general use) */
+  padding: 8px 15px; /* Sets padding inside the button (slightly more vertical padding) */
+  border: none; /* Removes the default browser border */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  cursor: pointer; /* Changes the mouse cursor to a pointer on hover */
+  font-size: 0.8rem; /* Sets a smaller font size for action buttons */
+  font-weight: 600; /* Sets font weight (semi-bold) */
+  transition: background-color var(--admin-transition-speed) ease, transform var(--admin-transition-speed) ease, box-shadow var(--admin-transition-speed) ease; /* Adds smooth transitions for background, transform, and shadow changes */
+  color: var(--admin-button-text); /* Sets the default button text color using the variable (white) */
+  text-transform: uppercase; /* Converts button text to uppercase */
+  letter-spacing: 0.5px; /* Adds slight letter spacing */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Adds a subtle default box shadow */
+  display: inline-flex; /* Uses flexbox for internal alignment (useful for icon + text) */
+  align-items: center; /* Vertically centers content (icon/text) within the button */
+  justify-content: center; /* Horizontally centers content (icon/text) within the button */
+} /* End of the general button selector block */
+.recipe-actions button:hover, /* Selects these buttons on hover */
+.review-actions button:hover, /* Selects these buttons on hover */
+.action-button:hover { /* Selects these buttons on hover */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Applies a slightly stronger box shadow on hover */
+  transform: translateY(-1px); /* Moves the button slightly upwards on hover for a subtle lift effect */
+} /* End of the button hover selector block */
+.recipe-actions button:active, /* Selects these buttons when actively being clicked */
+.review-actions button:active, /* Selects these buttons when actively being clicked */
+.action-button:active { /* Selects these buttons when actively being clicked */
+  transform: scale(0.98); /* Slightly shrinks the button on click for feedback */
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Applies an inner shadow on click for a pressed effect */
+} /* End of the button active selector block */
+/* Specific Button Colors */ /* Comment indicating rules for specific button color variations based on class */
+.button-approve { background-color: var(--admin-color-approve); } /* Sets background color for 'approve' buttons using the green variable */
+.button-approve:hover { background-color: var(--admin-color-approve-hover); } /* Sets hover background color for 'approve' buttons using the darker green variable */
+.button-reject { background-color: var(--admin-color-reject); color: var(--admin-button-reject-text); } /* Sets background color (yellow) and text color (dark) for 'reject' buttons */
+.button-reject:hover { background-color: var(--admin-color-reject-hover); } /* Sets hover background color for 'reject' buttons using the darker yellow variable */
+.button-delete { background-color: var(--admin-color-delete); } /* Sets background color for 'delete' buttons using the red variable */
+.button-delete:hover { background-color: var(--admin-color-delete-hover); } /* Sets hover background color for 'delete' buttons using the darker red variable */
+.button-view { background-color: var(--admin-color-view); } /* Sets background color for 'view' buttons using the blue variable */
+.button-view:hover { background-color: var(--admin-color-view-hover); } /* Sets hover background color for 'view' buttons using the darker blue variable */
+
+/* Back Button */ /* Section comment for the back button style */
+.button-back { /* Selector targeting elements with the class 'button-back' */
+  background-color: #f8f9fa; /* Sets the background color to match the content background */
+  color: var(--admin-text-secondary); /* Sets the text color to secondary grey */
+  border: 1px solid var(--admin-border-color); /* Adds the default border */
+  padding: 8px 16px; /* Sets padding inside the button */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+  font-size: 0.9rem; /* Sets the font size */
+  font-weight: 500; /* Sets the font weight (medium) */
+  margin-bottom: 30px; /* Adds more space below the button */
+  transition: background-color var(--admin-transition-speed) ease, border-color var(--admin-transition-speed) ease; /* Adds smooth transitions for background and border color changes */
+  display: inline-flex; /* Uses flexbox for internal alignment (e.g., icon + text) */
+  align-items: center; /* Vertically centers content within the button */
+  box-shadow: none; /* Explicitly removes any box shadow */
+} /* End of the .button-back selector block */
+.button-back:hover { /* Selector targeting the back button on hover */
+  background-color: #e9ecef; /* Sets a slightly darker grey background on hover */
+  border-color: #ced4da; /* Sets a slightly darker border color on hover */
+  color: var(--admin-text-primary); /* Changes text color to the primary dark grey on hover */
+} /* End of the .button-back:hover selector block */
+
+/* === Detailed Recipe View Styles === */ /* Section heading comment for the detailed recipe view styles */
+.recipe-detail-view.admin-recipe-detail { /* Selector targeting elements with BOTH 'recipe-detail-view' and 'admin-recipe-detail' classes */
+  background-color: var(--admin-card-bg); /* Sets the background color using the card background variable */
+  padding: 30px 40px; /* Adds more padding inside the view */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  border: 1px solid var(--admin-border-color); /* Adds the default border */
+  box-shadow: var(--admin-shadow); /* Applies the default shadow */
+  margin-top: 10px; /* Adds a small margin above the detail view */
+} /* End of the .recipe-detail-view.admin-recipe-detail selector block */
+.recipe-detail-view h3 { /* Selector targeting h3 elements within the detail view */
+  font-size: 1.5rem; /* Sets the font size for the section title inside the detail view */
+  color: var(--admin-text-primary); /* Sets the text color using the primary text variable */
+  margin-top: 0; /* Removes default top margin */
+  margin-bottom: 25px; /* Adds space below the title */
+  padding-bottom: 15px; /* Adds space between the text and the border */
+  border-bottom: 1px solid var(--admin-border-color); /* Adds a bottom border separator */
+  font-weight: 600; /* Sets the font weight (semi-bold) */
+} /* End of the .recipe-detail-view h3 selector block */
+.recipe-detail-header { /* Selector targeting the header section of the recipe detail */
+  display: flex; /* Uses flexbox for layout */
+  justify-content: space-between; /* Puts space between title and ID */
+  align-items: baseline; /* Aligns items based on their text baseline */
+  margin-bottom: 30px; /* Adds space below the header */
+  flex-wrap: wrap; /* Allows items to wrap onto the next line if space is limited */
+  gap: 10px; /* Adds a gap between wrapped items */
+} /* End of the .recipe-detail-header selector block */
+.recipe-detail-header h4 { /* Selector targeting the h4 (main recipe title) within the header */
+  font-size: 1.75rem; /* Sets a larger font size for the main title */
+  color: var(--admin-text-primary); /* Sets the text color to primary */
+  margin: 0; /* Removes default margins */
+  font-weight: 600; /* Sets font weight (semi-bold) */
+} /* End of the .recipe-detail-header h4 selector block */
+.recipe-detail-header span { /* Selector targeting the span (recipe ID) within the header */
+  font-size: 0.9rem; /* Sets a smaller font size for the ID */
+  color: var(--admin-text-secondary); /* Sets the text color to secondary grey */
+  font-family: monospace; /* Uses a monospace font for the ID for a distinct look */
+} /* End of the .recipe-detail-header span selector block */
+.recipe-detail-body { /* Selector targeting the main body section of the recipe detail */
+  display: grid; /* Uses CSS Grid for layout */
+  grid-template-columns: 3fr 5fr; /* Defines two columns with a 3:5 width ratio (image vs text) */
+  gap: 40px; /* Sets a larger gap between the grid columns */
+} /* End of the .recipe-detail-body selector block */
+.recipe-detail-image { /* Selector targeting the image within the recipe detail body */
+  width: 100%; /* Makes the image take the full width of its grid column */
+  height: auto; /* Allows the height to adjust based on width and aspect ratio */
+  aspect-ratio: 4 / 3; /* Sets a 4:3 aspect ratio */
+  object-fit: cover; /* Scales image to cover the area, maintaining aspect ratio, cropping if needed */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  border: 1px solid var(--admin-border-color); /* Adds the default border */
+  align-self: start; /* Aligns the image to the top of its grid cell */
+} /* End of the .recipe-detail-image selector block */
+
+
+.recipe-detail-text p { /* Selector targeting paragraphs within the text area of the recipe detail */
+  margin-bottom: 12px; /* Adds space below each paragraph */
+  color: var(--admin-text-secondary); /* Sets the text color to secondary grey */
+  font-size: 0.95rem; /* Sets a slightly larger font size for detail text */
+} /* End of the .recipe-detail-text p selector block */
+.recipe-detail-text p strong { /* Selector targeting 'strong' elements within those paragraphs (for labels like "Chef:") */
+  color: var(--admin-text-primary); /* Sets the label text color to primary */
+  margin-right: 8px; /* Adds space after the label */
+  font-weight: 600; /* Sets the font weight (semi-bold) for labels */
+} /* End of the .recipe-detail-text p strong selector block */
+.recipe-detail-section { margin-top: 30px; } /* Selector targeting sections like Ingredients/Instructions, adds space above them */
+.recipe-detail-section h5 { /* Selector targeting the h5 titles for these sections */
+  font-size: 1.15rem; /* Sets the font size for section titles */
+  font-weight: 600; /* Sets the font weight (semi-bold) */
+  color: var(--admin-text-primary); /* Sets the text color to primary */
+  margin-bottom: 15px; /* Adds space below the title */
+  padding-bottom: 8px; /* Adds space between the text and the border */
+  border-bottom: 1px solid var(--admin-border-color); /* Adds a bottom border */
+  display: inline-block; /* Makes the border only span the width of the text content */
+} /* End of the .recipe-detail-section h5 selector block */
+.recipe-detail-section ul, .recipe-detail-section ol { /* Selector targeting unordered and ordered lists within these sections */
+  padding-left: 25px; /* Adds indentation for list items */
+  margin: 0; /* Removes default list margins */
+  color: var(--admin-text-secondary); /* Sets the text color for list items */
+  font-size: 0.95rem; /* Sets the font size for list items */
+  line-height: 1.7; /* Increases line height for better readability of lists */
+} /* End of the list selector block */
+.recipe-detail-section li { margin-bottom: 10px; } /* Selector targeting list items, adds space below each item */
+.recipe-detail-section p { /* Selector targeting paragraphs used *instead* of lists (e.g., instructions as a single block) */
+  margin: 0; /* Removes default paragraph margins */
+  font-size: 0.95rem; /* Sets the font size */
+  line-height: 1.7; /* Sets line height for readability */
+  color: var(--admin-text-secondary); /* Sets the text color */
+} /* End of the p selector block within sections */
+.recipe-detail-actions { /* Selector targeting the container for action buttons at the bottom of the detail view */
+    margin-top: 30px; /* Adds space above the actions container */
+    padding-top: 20px; /* Adds space above the buttons */
+    border-top: 1px solid var(--admin-border-color); /* Adds a separator line above the actions */
+    text-align: right; /* Aligns the button(s) inside to the right */
+} /* End of the .recipe-detail-actions selector block */
+
+
+
+/* --- Profile Update Form --- */ /* Section heading comment for the profile update form styles */
+.profile-update-container { padding: 20px 0; } /* Selector targeting the container for the form, adds vertical padding */
+.profile-form { /* Selector targeting the form element itself */
+  background-color: var(--admin-card-bg); /* Sets the background color using the card variable */
+  padding: 30px 40px; /* Adds padding inside the form */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  max-width: 700px; /* Sets a maximum width for the form (wider than default cards) */
+  margin: 20px auto; /* Adds vertical margin and centers the form horizontally */
+  box-shadow: var(--admin-shadow); /* Applies the default shadow */
+  border: 1px solid var(--admin-border-color); /* Adds the default border */
+} /* End of the .profile-form selector block */
+.profile-form h3 { /* Selector targeting the h3 title within the form */
+  color: var(--admin-navbar-accent-dark); /* Sets the title color to the darker Sky Blue accent */
+  text-align: center; /* Centers the title text */
+  margin: 0 0 25px 0; /* Sets margins (0 top/left/right, 25px bottom) */
+  font-size: 1.5rem; /* Sets the font size for the form title */
+  font-weight: 600; /* Sets the font weight (semi-bold) */
+} /* End of the .profile-form h3 selector block */
+.profile-form p { /* Selector targeting introductory paragraphs within the form */
+  text-align: center; /* Centers the introductory text */
+  color: var(--admin-text-secondary); /* Sets the text color to secondary grey */
+  margin-bottom: 35px; /* Adds more space below the introductory text */
+  font-size: 0.95rem; /* Sets the font size */
+  line-height: 1.6; /* Sets the line height */
+} /* End of the .profile-form p selector block */
+.profile-form label { /* Selector targeting form field labels */
+  display: block; /* Makes the label take up its own line */
+  margin-bottom: 8px; /* Adds space below the label, before the input */
+  font-weight: 500; /* Sets the font weight (medium) */
+  font-size: 0.9rem; /* Sets the font size for labels */
+  color: var(--admin-text-secondary); /* Sets the label text color to secondary grey */
+} /* End of the .profile-form label selector block */
+.profile-form input { /* Selector targeting input fields within the form */
+  display: block; /* Makes the input take up its own line */
+  width: 100%; /* Makes the input span the full width of the form */
+  padding: 12px 15px; /* Sets padding inside the input field */
+  margin-bottom: 20px; /* Adds space below the input field */
+  border: 1px solid var(--admin-border-color); /* Sets the default border */
+  border-radius: var(--admin-border-radius); /* Applies the default border radius */
+  box-sizing: border-box; /* Includes padding and border in the element's total width */
+  font-size: 1rem; /* Sets the font size for text entered into the input */
+  color: var(--admin-text-primary); /* Sets the text color for input content */
+  background-color: #fff; /* Sets the background color of the input */
+  transition: border-color var(--admin-transition-speed) ease, box-shadow var(--admin-transition-speed) ease; /* Adds smooth transitions for border and shadow changes on focus */
+} /* End of the .profile-form input selector block */
+.profile-form input::placeholder { color: #adb5bd; } /* Styles the placeholder text within input fields (lighter grey) */
+.profile-form input:focus { /* Selector targeting input fields when they have focus */
+  border-color: var(--admin-input-focus-color); /* Changes the border color to the Sky Blue focus color variable */
+  outline: 0; /* Removes the default browser focus outline */
+  box-shadow: 0 0 0 3px var(--admin-input-focus-shadow); /* Adds a Sky Blue glow effect using the focus shadow variable */
+} /* End of the .profile-form input:focus selector block */
+/* Form Buttons */ /* Comment indicating styles for buttons within the form */
+.profile-form .action-button { /* Selector targeting elements with 'action-button' class inside the profile form */
+  width: 100%; /* Makes the button span the full width of the form */
+  padding: 12px; /* Sets padding inside the button */
+  font-size: 1rem; /* Sets the font size for the button text */
+  margin-top: 10px; /* Adds space above the button */
+} /* End of the .profile-form .action-button selector block */
+.profile-form .action-button[type="submit"] { /* Selector targeting the submit button specifically */
+  background-color: var(--admin-navbar-accent); /* Sets the background color to the Sky Blue accent */
+  color: #fff; /* Sets the text color to white */
+} /* End of the submit button selector block */
+.profile-form .action-button[type="submit"]:hover { /* Selector targeting the submit button on hover */
+  background-color: var(--admin-navbar-accent-dark); /* Sets the background color to the darker Sky Blue accent on hover */
+} /* End of the submit button hover selector block */
+.profile-form .action-button.cancel-button { /* Selector targeting buttons with the 'cancel-button' class */
+  background-color: var(--admin-text-secondary); /* Sets the background color to grey */
+  color: #fff; /* Sets the text color to white */
+  margin-top: 8px; /* Adds a slightly smaller margin above the cancel button */
+} /* End of the cancel button selector block */
+.profile-form .action-button.cancel-button:hover { /* Selector targeting the cancel button on hover */
+  background-color: #5a6a85; /* Sets a darker grey background on hover */
+} /* End of the cancel button hover selector block */
+
+
+/* --- Responsive Design Adjustments --- */ /* Section heading comment for responsive styles using media queries */
+@media (max-width: 1200px) { /* Media query applies styles when viewport width is 1200px or less */
+  .recipe-detail-body { /* Selects the recipe detail body */
+      grid-template-columns: 2fr 3fr; /* Adjusts the grid column ratio for slightly narrower screens */
+      gap: 30px; /* Reduces the gap between grid columns */
+  } /* End of .recipe-detail-body block for 1200px */
+} /* End of @media (max-width: 1200px) block */
+
+@media (max-width: 992px) { /* Media query applies styles when viewport width is 992px or less */
+  :root { --admin-content-padding: 25px 30px; } /* Adjusts the content padding variable for medium screens */
+  .dashboard-content h3 { font-size: 1.6rem; } /* Reduces the font size of section titles */
+  .recipe-list.admin-recipe-list { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); } /* Allows slightly narrower recipe cards */
+  .review-list { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); } /* Allows slightly narrower review cards */
+  .recipe-detail-body { grid-template-columns: 1fr; } /* Stacks recipe detail image and text into a single column */
+  .recipe-detail-image { max-width: 450px; margin: 0 auto 30px auto; /* Center image */ } /* Limits image width and centers it when stacked */
+  .profile-form { max-width: 90%; padding: 30px; } /* Makes profile form slightly narrower and adjusts padding */
+} /* End of @media (max-width: 992px) block */
+
+@media (max-width: 768px) { /* Media query applies styles when viewport width is 768px or less (typical tablet/small laptop breakpoint) */
+  :root { --admin-content-padding: var(--admin-content-padding-mobile); } /* Uses the mobile padding variable */
+
+  /* Collapsed Navbar */ /* Comment indicating styles for the collapsed mobile navbar */
+  .admin-dashboard-navbar { /* Selects the navbar */
+    height: auto; /* Allows navbar height to adjust based on content */
+    flex-direction: column; /* Stacks navbar items (brand, actions) vertically */
+    align-items: stretch; /* Makes items stretch to full width */
+    padding: 0; /* Removes horizontal padding */
+    position: relative; /* Changes position from sticky to relative for simpler layout */
+  } /* End of .admin-dashboard-navbar block for 768px */
+  .admin-dashboard-navbar .navbar-brand { /* Selects the navbar brand */
+    padding: 12px 15px; /* Adds padding */
+    border-bottom: 1px solid var(--admin-navbar-border); /* Adds border below the brand */
+    width: 100%; /* Makes brand container full width */
+    box-sizing: border-box; /* Includes padding/border in width */
+    text-align: center; /* Centers the brand text */
+  } /* End of .navbar-brand block for 768px */
+  .admin-dashboard-navbar .navbar-brand a { font-size: 1.4rem; } /* Reduces brand link font size */
+  .admin-dashboard-navbar .navbar-actions { /* Selects the navbar actions container */
+    width: 100%; /* Makes actions container full width */
+    display: flex; /* Keeps flex display */
+    flex-direction: column; /* Stacks action buttons vertically */
+    align-items: stretch; /* Makes buttons stretch to full width */
+  } /* End of .navbar-actions block for 768px */
+  .admin-dashboard-navbar .navbar-button { /* Selects individual navbar buttons */
+    padding: 14px 15px; /* Increases padding for easier tapping (taller buttons) */
+    border-radius: 0; /* Removes rounded corners */
+    justify-content: center; /* Centers button text */
+    border-bottom: 1px solid var(--admin-navbar-border); /* Adds border below each button */
+    font-size: 1rem; /* Increases font size slightly */
+  } /* End of .navbar-button block for 768px */
+  .admin-dashboard-navbar .navbar-button:last-child { border-bottom: none; } /* Removes border from the last button */
+  .admin-dashboard-navbar .navbar-button.active { /* Selects the active navbar button */
+    background-color: var(--admin-navbar-accent); /* Sets a solid Sky Blue background */
+    color: white; /* Sets text color to white */
+    font-weight: 600; /* Keeps font weight semi-bold */
+  } /* End of .navbar-button.active block for 768px */
+  .admin-dashboard-navbar .navbar-button:focus-visible { outline-offset: -2px; } /* Adjusts focus outline offset for edge buttons */
+
+  /* Content adjustments */ /* Comment indicating general content adjustments for this breakpoint */
+  .dashboard-content h3 { font-size: 1.4rem; margin-bottom: 25px; padding-bottom: 10px; } /* Reduces title size and spacing */
+  .recipe-list.admin-recipe-list, .review-list { grid-template-columns: 1fr; gap: 20px; } /* Stacks list items into a single column and reduces gap */
+  .stat-card { padding: 20px 15px; } /* Reduces padding in stat cards */
+  .stat-number { font-size: 2.2rem; } /* Reduces font size of stat numbers */
+  .admin-quick-stats { gap: 15px; } /* Reduces gap between stat cards */
+} /* End of @media (max-width: 768px) block */
+
+@media (max-width: 480px) { /* Media query applies styles when viewport width is 480px or less (typical mobile breakpoint) */
+  :root { --admin-content-padding: 15px; } /* Reduces content padding further */
+  .admin-dashboard-navbar .navbar-brand a { font-size: 1.3rem; } /* Reduces navbar brand font size */
+  .admin-dashboard-navbar .navbar-button { font-size: 0.95rem; padding: 12px 15px; } /* Reduces navbar button font size and padding */
+  .dashboard-content h3 { font-size: 1.3rem; } /* Reduces section title font size */
+  .admin-recipe-content-container h4 { font-size: 1.1rem; } /* Reduces recipe card title font size */
+  .admin-recipe-content-container p, .review-card p { font-size: 0.9rem; } /* Reduces paragraph font size in cards */
+  .recipe-actions, .review-actions { gap: 6px; } /* Reduces gap between action buttons in cards */
+  .recipe-actions button, .review-actions button { font-size: 0.75rem; padding: 7px 12px; } /* Reduces font size and padding of action buttons in cards */
+  .stat-number { font-size: 2rem; } /* Reduces stat number font size */
+  .stat-label { font-size: 0.8rem; } /* Reduces stat label font size */
+  .profile-form { padding: 20px; } /* Reduces padding in the profile form */
+  .profile-form h3 { font-size: 1.3rem; } /* Reduces profile form title font size */
+  .profile-form label, .profile-form input { font-size: 0.95rem; } /* Reduces font size for form labels and inputs */
+  .recipe-detail-view.admin-recipe-detail { padding: 20px 25px; } /* Reduces padding in the recipe detail view */
+  .recipe-detail-header h4 { font-size: 1.5rem;} /* Reduces recipe detail title font size */
+} /* End of @media (max-width: 480px) block */

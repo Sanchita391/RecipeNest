@@ -1,0 +1,253 @@
+/* --- Import Font and Variables (Keep as is) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+:root {
+  --auth-bg-start: #161828;
+  --auth-bg-end: #0e101a;
+  --auth-accent: #ff7a1a;
+  --auth-accent-hover: #ff9040;
+  --auth-text-primary: #eaeaef;
+  --auth-text-secondary: #a0aec0;
+  --auth-border-color: rgba(255, 255, 255, 0.1);
+  --auth-glow-color: rgba(255, 122, 26, 0.2);
+  --auth-input-bg: rgba(30, 35, 50, 0.4);
+  --auth-input-bg-focus: rgba(30, 35, 50, 0.6);
+  --auth-error-color: #ff9088;
+  --auth-error-bg: rgba(255, 144, 136, 0.1);
+}
+
+/* --- Background & Container (Keep As Is) --- */
+.auth-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* Use min-height for scroll if content overflows */
+    height: auto; /* Allow height to grow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--auth-bg-start), var(--auth-bg-end) 70%);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px 20px; /* Add padding for smaller screens */
+    box-sizing: border-box;
+}
+/* Blobs (Keep as is) */
+.auth-container::before, .auth-container::after { /* ... blob styles ... */
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.15;
+    z-index: 0;
+    animation: blob-move 25s infinite linear alternate;
+}
+.auth-container::before { width: 45vmax; height: 45vmax; background: radial-gradient(circle, #5a4fff, transparent 60%); top: -10%; left: -15%;}
+.auth-container::after { width: 35vmax; height: 35vmax; background: radial-gradient(circle, var(--auth-accent), transparent 70%); bottom: -5%; right: -10%; animation-delay: -12s;}
+@keyframes blob-move { 0% { transform: translate(0%, 0%) rotate(0deg) scale(1); } 100% { transform: translate(10%, -15%) rotate(180deg) scale(1.1); } }
+
+/* --- Polished Glassmorphism Auth Box (WIDER) --- */
+.auth-box {
+    position: relative;
+    z-index: 2;
+    background: rgba(35, 40, 65, 0.45); /* Slightly more opaque */
+    backdrop-filter: blur(20px) saturate(150%);
+    padding: 50px 45px; /* Adjust padding */
+    border-radius: 24px;
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.4);
+    /* --- ADJUSTED WIDTH --- */
+    width: 700px; /* Significantly wider for two columns */
+    max-width: 95%; /* Allow slight edge gap */
+    /* Keep text-align: center for overall content centering (h2, links) */
+    /* We will override for the form content */
+    text-align: center;
+    color: var(--auth-text-secondary);
+    overflow: hidden;
+}
+/* Glowing Border (Keep as is) */
+.auth-box::before { /* ... glow styles ... */
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: conic-gradient( from 180deg at 50% 50%, var(--auth-glow-color), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3), var(--auth-glow-color), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3), var(--auth-glow-color) );
+    filter: blur(2px);
+    z-index: -1;
+}
+
+/* Login Box Headings (Keep As Is) */
+.auth-box h2 {
+    margin-bottom: 35px;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--auth-text-primary);
+    letter-spacing: 1px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* --- MODIFICATION: Target the FORM element directly or add a wrapper --- */
+/* Assuming your inputs are inside a <form> tag */
+.auth-box form {
+    display: grid;
+    /* Create two equal-width columns */
+    grid-template-columns: 1fr 1fr;
+    /* Space between rows and columns */
+    gap: 25px;
+    /* Align input groups to the start (top) of their grid cell */
+    align-items: start;
+    /* Space below the grid before the button */
+    margin-bottom: 30px;
+    text-align: left; /* Ensure labels/inputs align left within grid cells */
+}
+
+
+/* --- Input Fields (Adjust Margins) --- */
+.input-group {
+    /* Remove individual margin-bottom, rely on grid 'gap' */
+    margin-bottom: 0;
+    /* Keep other styles */
+    text-align: left;
+    position: relative;
+}
+
+/* Input Labels (Keep as is) */
+.input-group label {
+    display: block;
+    font-size: 13px;
+    color: var(--auth-text-secondary);
+    margin-bottom: 8px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+/* Input/Select Elements (Keep as is) */
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--auth-border-color);
+    border-radius: 12px;
+    font-size: 15px;
+    background-color: var(--auth-input-bg);
+    color: var(--auth-text-primary);
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+.input-group input::placeholder { color: rgba(160, 176, 192, 0.6); }
+.input-group input:focus, .input-group select:focus {
+    background-color: var(--auth-input-bg-focus);
+    border-color: var(--auth-accent);
+    box-shadow: 0 0 0 4px var(--auth-glow-color);
+}
+/* Focus label change (Keep as is) */
+.input-group:focus-within label { color: var(--auth-accent); }
+/* Select Arrow (Keep as is) */
+.input-group select { appearance: none; background-image: url('data:image/svg+xml;utf8,<svg fill="%23a0aec0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); background-repeat: no-repeat; background-position: right 15px center; background-size: 22px; padding-right: 45px; }
+/* Select Options (Keep as is) */
+.input-group select option { color: #111; background-color: #fff; }
+
+/* --- Button and Links Section --- */
+/* Optional: Wrap button and links in a div for better control if needed */
+/* .auth-actions { text-align: center; } */
+
+/* Button (Keep As Is - width: 100% will now respect the wider .auth-box) */
+.btn-auth {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, var(--auth-accent-hover), var(--auth-accent));
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    /* Adjust top margin if needed after grid gap */
+    margin-top: 0; /* Removed, handled by grid gap/form margin */
+    transition: all 0.35s ease-in-out;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.25);
+    transform: perspective(1px) translateZ(0);
+}
+.btn-auth:hover { background: linear-gradient(135deg, var(--auth-accent), var(--auth-accent-hover)); transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3); }
+.btn-auth:active { transform: translateY(0px) scale(0.98); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
+.btn-auth:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(var(--auth-glow-color), 0.8), 0 5px 18px rgba(0, 0, 0, 0.25); }
+
+
+/* Signup/Other Links (Keep As Is, already centered) */
+.auth-box p { /* Applies centering from .auth-box */
+    margin-top: 25px;
+    font-size: 14px;
+}
+.auth-switch-link a, .auth-box p a {
+    color: var(--auth-accent-hover);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+.auth-switch-link a:hover, .auth-box p a:hover {
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 0 8px var(--auth-accent-hover);
+}
+
+/* Error Message Styling (Keep As Is) */
+.error-msg { /* Ensure this is placed correctly relative to the grid/button */
+  background-color: var(--auth-error-bg);
+  color: var(--auth-error-color);
+  border: 1px solid rgba(255, 144, 136, 0.3);
+  padding: 12px 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 20px; /* If placed before button */
+  margin-bottom: 20px; /* If placed after button */
+  width: 100%;
+  box-sizing: border-box;
+  /* To make error span columns if inside grid: */
+  /* grid-column: 1 / -1;  */
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  /* Stack form elements into a single column on smaller screens */
+  .auth-box form {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 20px; /* Adjust vertical gap */
+  }
+
+  /* Reduce auth-box width slightly */
+  .auth-box {
+    width: 90%; /* Rely more on max-width */
+    padding: 40px 30px; /* Slightly reduce padding */
+  }
+
+  /* Optionally reduce heading size */
+  .auth-box h2 {
+      font-size: 26px;
+      margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+   .auth-box {
+       padding: 35px 25px;
+       border-radius: 18px;
+   }
+   .auth-box h2 {
+      font-size: 24px;
+      margin-bottom: 25px;
+   }
+   .btn-auth {
+       padding: 14px;
+       font-size: 16px;
+   }
+   .input-group input, .input-group select {
+      padding: 12px 15px;
+      font-size: 14px;
+   }
+    /* Reduce blob size */
+    .auth-container::before { width: 60vmax; height: 60vmax; filter: blur(80px); }
+    .auth-container::after { width: 50vmax; height: 50vmax; filter: blur(80px); }
+}

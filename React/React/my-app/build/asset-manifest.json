@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.0ef0a25f.css",
+    "main.js": "/static/js/main.d92673c8.js",
+    "static/media/RecipeNestlogo.png": "/static/media/RecipeNestlogo.bf463ad00eb8841d7350.png",
+    "index.html": "/index.html",
+    "main.0ef0a25f.css.map": "/static/css/main.0ef0a25f.css.map",
+    "main.d92673c8.js.map": "/static/js/main.d92673c8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0ef0a25f.css",
+    "static/js/main.d92673c8.js"
+  ]
+}
