@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\profile\\303094ce-9c45-4832-9284-bd178240ca6e.jpg",
+      "PackagePath": "staticwebassets\\uploads\\profile\\303094ce-9c45-4832-9284-bd178240ca6e.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\profile\\76b30383-6a50-44d9-9a53-8bd5eb3eccc7.jpg",
+      "PackagePath": "staticwebassets\\uploads\\profile\\76b30383-6a50-44d9-9a53-8bd5eb3eccc7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\profile\\9fe21d1b-21e5-4f60-86a0-fe2708f70294.jpg",
+      "PackagePath": "staticwebassets\\uploads\\profile\\9fe21d1b-21e5-4f60-86a0-fe2708f70294.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\profile\\cc1a07a4-fb36-4c20-8b31-31e08f57f19c.jpg",
+      "PackagePath": "staticwebassets\\uploads\\profile\\cc1a07a4-fb36-4c20-8b31-31e08f57f19c.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\profile\\e6162b7f-8f4f-47ad-8271-cb4b48e69d25.jpg",
+      "PackagePath": "staticwebassets\\uploads\\profile\\e6162b7f-8f4f-47ad-8271-cb4b48e69d25.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\recipes\\128b76b0-3e3b-4727-a0fc-8a47d3d8dc81.jpg",
+      "PackagePath": "staticwebassets\\uploads\\recipes\\128b76b0-3e3b-4727-a0fc-8a47d3d8dc81.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\recipes\\5f5bd5ff-4cab-4acc-a080-57b10ac626e9.jpg",
+      "PackagePath": "staticwebassets\\uploads\\recipes\\5f5bd5ff-4cab-4acc-a080-57b10ac626e9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\recipes\\bc9bf829-7016-483e-aaa6-9568ecee2c21.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\recipes\\bc9bf829-7016-483e-aaa6-9568ecee2c21.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\Acer\\OneDrive\\Desktop\\College Project\\L5 sem 1\\RecipeNest.Api01\\RecipeNest.Api01\\wwwroot\\uploads\\recipes\\c22289a4-e235-4974-a2d5-d8c3d9c787d7.jpg",
+      "PackagePath": "staticwebassets\\uploads\\recipes\\c22289a4-e235-4974-a2d5-d8c3d9c787d7.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RecipeNest.Api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RecipeNest.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.RecipeNest.Api.props",
+      "PackagePath": "build\\RecipeNest.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.RecipeNest.Api.props",
+      "PackagePath": "buildMultiTargeting\\RecipeNest.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.RecipeNest.Api.props",
+      "PackagePath": "buildTransitive\\RecipeNest.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
